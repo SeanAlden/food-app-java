@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Two circular arrows representing transaction/swap -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M4,11 a7,7 0 0 1 7,-7 h1 v2 h-1 a5,5 0 0 0 -5,5 1,1 0 0 1 -2,0 z"/>
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M20,13 a7,7 0 0 1 -7,7 h-1 v-2 h1 a5,5 0 0 0 5,-5 1,1 0 0 1 2,0 z"/>
+    <!-- Arrow heads -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M10.2,4.6 L12.6,2.2 11.9,1.5 8.9,4.5 11.9,7.5 12.6,6.8z"/>
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M13.8,19.4 L11.4,21.8 12.1,22.5 15.1,19.5 12.1,16.5 11.4,17.2z"/>
+</vector>

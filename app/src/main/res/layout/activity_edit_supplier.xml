@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:orientation="vertical" android:padding="16dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:id="@+id/ivSupplierPreviewEdit" android:layout_width="match_parent" android:layout_height="180dp" android:scaleType="fitCenter" android:src="@drawable/food"/>
+        <Button android:id="@+id/btnPickSupplierImageEdit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pick Image" android:layout_marginTop="8dp"/>
+        <EditText android:id="@+id/etSupplierNameEdit" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Name" android:layout_marginTop="12dp"/>
+        <EditText android:id="@+id/etSupplierCodeEdit" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Code" android:layout_marginTop="8dp"/>
+        <EditText android:id="@+id/etSupplierPhoneEdit" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Phone" android:layout_marginTop="8dp"/>
+        <EditText android:id="@+id/etSupplierAddressEdit" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Address" android:layout_marginTop="8dp"/>
+        <EditText android:id="@+id/etSupplierDescEdit" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Description" android:layout_marginTop="8dp"/>
+        <Button android:id="@+id/btnSaveSupplierEdit" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Save" android:layout_marginTop="16dp"/>
+    </LinearLayout>
+</ScrollView>
