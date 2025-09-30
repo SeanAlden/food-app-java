@@ -132,13 +132,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.foodapp_java.page.AdminFragmentActivity;
-import com.example.foodapp_java.page.AdminHomeActivity;
-import com.example.foodapp_java.page.HomeActivity;
 import com.example.foodapp_java.page.LoginActivity;
 import com.example.foodapp_java.page.UserFragmentActivity;
 import com.google.firebase.auth.FirebaseAuth;

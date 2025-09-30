@@ -245,6 +245,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -268,6 +269,7 @@ public class AddOutgoingStockActivity extends AppCompatActivity {
     private Spinner spinnerFood, spinnerSupplier, spinnerExpDate;
     private EditText etQty, btnPickDate;
     private Button btnSave;
+    private TextView tvCurrentStock;
     private FirebaseFirestore db;
 
     // Simpan snapshot dokumen expiry agar mudah ambil id / stock_amount
@@ -291,6 +293,7 @@ public class AddOutgoingStockActivity extends AppCompatActivity {
         etQty = findViewById(R.id.etQtyAddStock);
         btnPickDate = findViewById(R.id.btnPickExpDateAddStock); // tetap ada di layout; akan disembunyikan
         btnSave = findViewById(R.id.btnSaveOutgoingStock);
+        tvCurrentStock = findViewById(R.id.tvCurrentStock);
 
         db = FirebaseFirestore.getInstance();
 
@@ -309,9 +312,15 @@ public class AddOutgoingStockActivity extends AppCompatActivity {
                 if (pos >= 0 && pos < expDateDocs.size()) {
                     selectedExpSnapshot = expDateDocs.get(pos);
                     selectedExpDate = selectedExpSnapshot.getDate("exp_date");
+
+                    // tampilkan stok preview
+                    Long stock = selectedExpSnapshot.getLong("stock_amount");
+                    long currentStock = stock == null ? 0L : stock;
+                    tvCurrentStock.setText("Sisa stok: " + currentStock);
                 } else {
                     selectedExpSnapshot = null;
                     selectedExpDate = null;
+                    tvCurrentStock.setText("Sisa stok: -");
                 }
             }
 
@@ -319,6 +328,7 @@ public class AddOutgoingStockActivity extends AppCompatActivity {
             public void onNothingSelected(android.widget.AdapterView<?> parent) {
                 selectedExpSnapshot = null;
                 selectedExpDate = null;
+                tvCurrentStock.setText("Sisa Stok: -");
             }
         });
 
@@ -335,7 +345,8 @@ public class AddOutgoingStockActivity extends AppCompatActivity {
             Calendar sel = Calendar.getInstance();
             sel.set(year, month, dayOfMonth, 0, 0, 0);
             selectedExpDate = sel.getTime();
-            if (btnPickDate != null) btnPickDate.setText(android.text.format.DateFormat.format("yyyy-MM-dd", selectedExpDate));
+            if (btnPickDate != null)
+                btnPickDate.setText(android.text.format.DateFormat.format("yyyy-MM-dd", selectedExpDate));
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
         dp.show();
     }
@@ -367,6 +378,7 @@ public class AddOutgoingStockActivity extends AppCompatActivity {
                     expDates.clear();
                     expDateAdapter.clear();
                     expDateAdapter.notifyDataSetChanged();
+                    tvCurrentStock.setText("Sisa stok: -");
                 }
             });
         });
@@ -431,6 +443,7 @@ public class AddOutgoingStockActivity extends AppCompatActivity {
                     } else {
                         selectedExpSnapshot = null;
                         selectedExpDate = null;
+                        tvCurrentStock.setText("Sisa stok: -");
                     }
                 })
                 .addOnFailureListener(err -> {

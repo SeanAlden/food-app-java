@@ -112,6 +112,10 @@ public class Food implements Parcelable {
     private Date nearestExpDate;
     private int totalStock;
 
+    // Field tambahan hasil olahan
+//    private int totalStock;
+    private String nearestExp;
+
     public Food() {}
 
     // optional constructor including categoryId
@@ -175,6 +179,9 @@ public class Food implements Parcelable {
 
     public int getTotalStock() { return totalStock; }
     public void setTotalStock(int totalStock) { this.totalStock = totalStock; }
+
+    public String getNearestExp() { return nearestExp; }
+    public void setNearestExp(String nearestExp) { this.nearestExp = nearestExp; }
 
     @Override
     public int describeContents() { return 0; }

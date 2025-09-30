@@ -38,6 +38,9 @@ public class Category implements Parcelable {
     };
 
     public String getId() { return id; }
+    public String setId(String id){
+        return this.id = id;
+    }
     public String getName() { return name; }
     public String getDescription() { return description; }
     public String getCode() { return code; }
