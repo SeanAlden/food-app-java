@@ -86,24 +86,14 @@ public class AdminHomeFragment extends Fragment {
         ImageButton btnSupplier = view.findViewById(R.id.btnSupplier);
         ImageButton btnStockManagement = view.findViewById(R.id.btnStockManagement);
 
-        // Tombol logout
-        Button btnLogout = view.findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(getActivity(), LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            requireActivity().finish();
-        });
-
         // Dummy data toko
         TextView tvTotalFoods = view.findViewById(R.id.tvTotalFoods);
         TextView tvTotalTransactions = view.findViewById(R.id.tvTotalTransactions);
         TextView tvTotalCustomers = view.findViewById(R.id.tvTotalCustomers);
 
-        tvTotalFoods.setText("25");
-        tvTotalTransactions.setText("120");
-        tvTotalCustomers.setText("80");
+        tvTotalFoods.setText("5");
+        tvTotalTransactions.setText("12");
+        tvTotalCustomers.setText("8");
 
         btnFood.setOnClickListener(v -> startActivity(new Intent(getActivity(), FoodActivity.class)));
         btnCategory.setOnClickListener(v -> startActivity(new Intent(getActivity(), CategoryActivity.class)));

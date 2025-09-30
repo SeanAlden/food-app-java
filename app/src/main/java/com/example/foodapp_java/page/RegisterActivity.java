@@ -210,6 +210,7 @@ public class RegisterActivity extends AppCompatActivity {
                             if (user != null) {
                                 // simpan ke Firestore
                                 Map<String, Object> userMap = new HashMap<>();
+                                userMap.put("uid", user.getUid());   // tambahkan UID ke dalam field
                                 userMap.put("name", name);
                                 userMap.put("phone", phone);
                                 userMap.put("email", email);

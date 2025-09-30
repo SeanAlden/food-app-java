@@ -15,6 +15,18 @@
         android:theme="@style/Theme.FoodApp_Java"
         tools:targetApi="31">
         <activity
+            android:name=".page.ExitStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".page.EditStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".page.AddStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".page.EntryStockActivity"
+            android:exported="false" />
+        <activity
             android:name=".page.UserFragmentActivity"
             android:exported="false" />
         <activity
@@ -64,10 +76,9 @@
             android:exported="false" />
         <activity
             android:name=".page.FoodDetailActivity"
-            android:exported="false" />
-        <!--        <activity-->
-        <!--            android:name=".adapter.NewsAdapter"-->
-        <!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".adapter.NewsAdapter" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".page.AdminHomeActivity"
             android:exported="false" />
@@ -78,19 +89,15 @@
         <activity
             android:name=".page.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.Material3.Light.NoActionBar" />
-
-        <!--        <activity-->
-        <!--            android:name=".page.LoginActivity"-->
-        <!--            android:exported="true"-->
-        <!--            android:theme="@style/Theme.Material3.Light.NoActionBar">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.intent.action.MAIN" />-->
-
-        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity>-->
-
+            android:theme="@style/Theme.Material3.Light.NoActionBar" /> <!-- <activity -->
+        <!-- android:name=".page.LoginActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:theme="@style/Theme.Material3.Light.NoActionBar"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
             android:name=".MainActivity"
             android:exported="true"

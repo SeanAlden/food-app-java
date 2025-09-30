@@ -2,12 +2,11 @@ package com.example.foodapp_java.page;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodapp_java.R;
-import com.example.foodapp_java.page.fragment.user.UserChatFragment;
+import com.example.foodapp_java.page.fragment.user.UserFavoriteFragment;
 import com.example.foodapp_java.page.fragment.user.UserHomeFragment;
 import com.example.foodapp_java.page.fragment.user.UserProfileFragment;
 import com.example.foodapp_java.page.fragment.user.UserTransactionFragment;
@@ -27,8 +26,8 @@ public class UserFragmentActivity extends AppCompatActivity {
                 selectedFragment = new UserHomeFragment();
             } else if (id == R.id.nav_user_transaction) {
                 selectedFragment = new UserTransactionFragment();
-            } else if (id == R.id.nav_user_chat) {
-                selectedFragment = new UserChatFragment();
+            } else if (id == R.id.nav_user_favorite) {
+                selectedFragment = new UserFavoriteFragment();
             } else if (id == R.id.nav_user_profile) {
                 selectedFragment = new UserProfileFragment();
             }

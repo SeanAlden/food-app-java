@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.foodapp_java.R;
 
-public class UserChatFragment extends Fragment {
+public class UserFavoriteFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

@@ -24,4 +24,26 @@
             android:layout_gravity="center" />
     </com.google.android.material.appbar.MaterialToolbar>
 
+    <!-- Tombol Entry Stock -->
+    <Button
+        android:id="@+id/btnEntryStock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Entry Stock"
+        app:layout_constraintTop_toBottomOf="@id/toolbarFood"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
+    <!-- Tombol Exit Stock -->
+    <Button
+        android:id="@+id/btnExitStock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Exit Stock"
+        app:layout_constraintTop_toBottomOf="@id/btnEntryStock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
