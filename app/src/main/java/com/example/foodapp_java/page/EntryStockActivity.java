@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.adapter.EntryStockAdapter;
-import com.example.foodapp_java.dataClass.StockEntry;
+import com.example.foodapp_java.dataClass.EntryStock;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -26,7 +26,7 @@ public class EntryStockActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private RecyclerView rv;
     private EntryStockAdapter adapter;
-    private List<StockEntry> entries = new ArrayList<>();
+    private List<EntryStock> entries = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +39,22 @@ public class EntryStockActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new EntryStockAdapter(this, entries, new EntryStockAdapter.OnActionListener() {
             @Override
-            public void onEdit(StockEntry entry) {
-                Intent i = new Intent(EntryStockActivity.this, EditStockActivity.class);
+            public void onEdit(EntryStock entry) {
+                Intent i = new Intent(EntryStockActivity.this, EditEntryStockActivity.class);
                 i.putExtra("entry", entry);
                 i.putExtra("entryId", entry.getId()); // ✅ kirim juga ID dokumen
                 startActivity(i);
             }
 
             @Override
-            public void onDelete(StockEntry entry) {
+            public void onDelete(EntryStock entry) {
                 confirmAndDelete(entry);
             }
         });
         rv.setAdapter(adapter);
 
         findViewById(R.id.fabAddEntry).setOnClickListener(v -> {
-            startActivity(new Intent(this, AddStockActivity.class));
+            startActivity(new Intent(this, AddEntryStockActivity.class));
         });
 
         listenEntries();
@@ -71,7 +71,7 @@ public class EntryStockActivity extends AppCompatActivity {
                     if (snap == null) return;
                     entries.clear();
                     for (DocumentSnapshot d : snap.getDocuments()) {
-                        StockEntry se = d.toObject(StockEntry.class);
+                        EntryStock se = d.toObject(EntryStock.class);
                         if (se != null) {
                             se.setId(d.getId());
                             // ensure createdAt is set if stored as Timestamp
@@ -132,7 +132,7 @@ public class EntryStockActivity extends AppCompatActivity {
 //                });
 //    }
 
-    private void enrichEntry(StockEntry se) {
+    private void enrichEntry(EntryStock se) {
         // FOOD
         if (se.getFoodId() != null && !se.getFoodId().isEmpty()) {
             db.collection("foods").document(se.getFoodId()).get()
@@ -178,7 +178,7 @@ public class EntryStockActivity extends AppCompatActivity {
         }
     }
 
-    private void confirmAndDelete(StockEntry entry) {
+    private void confirmAndDelete(EntryStock entry) {
         new AlertDialog.Builder(this)
                 .setTitle("Delete entry")
                 .setMessage("Delete this stock entry? This will decrease the related expiry stock.")
@@ -187,7 +187,7 @@ public class EntryStockActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void deleteEntry(StockEntry entry) {
+    private void deleteEntry(EntryStock entry) {
         if (entry == null) return;
         // batch: decrement food_exp_date_stocks.exp_stock_id by qty; then delete entry
         String expStockId = entry.getExpStockId();

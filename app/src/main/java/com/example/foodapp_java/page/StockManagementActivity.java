@@ -36,7 +36,7 @@ public class StockManagementActivity extends AppCompatActivity {
         // Tombol Exit Stock
         Button btnExit = findViewById(R.id.btnExitStock);
         btnExit.setOnClickListener(v -> {
-            Intent intent = new Intent(StockManagementActivity.this, ExitStockActivity.class);
+            Intent intent = new Intent(StockManagementActivity.this, OutgoingStockActivity.class);
             startActivity(intent);
         });
     }

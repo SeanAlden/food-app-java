@@ -251,7 +251,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AddStockActivity extends AppCompatActivity {
+public class AddEntryStockActivity extends AppCompatActivity {
 
     private Spinner spinnerFood, spinnerSupplier, spinnerExpDate;
     private EditText etQty, btnPickDate;
@@ -268,7 +268,7 @@ public class AddStockActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_stock);
+        setContentView(R.layout.activity_add_entry_stock);
 
         spinnerFood = findViewById(R.id.spinnerFood);
         spinnerSupplier = findViewById(R.id.spinnerSupplier);

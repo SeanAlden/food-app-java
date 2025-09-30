@@ -13,25 +13,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodapp_java.R;
-import com.example.foodapp_java.dataClass.EntryStock;
+import com.example.foodapp_java.dataClass.OutgoingStock; // Diubah
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class EntryStockAdapter extends RecyclerView.Adapter<EntryStockAdapter.VH> {
+public class OutgoingStockAdapter extends RecyclerView.Adapter<OutgoingStockAdapter.VH> {
 
     public interface OnActionListener {
-        void onEdit(EntryStock entry);
-
-        void onDelete(EntryStock entry);
+        void onEdit(OutgoingStock entry);
+        void onDelete(OutgoingStock entry);
     }
 
     private Context ctx;
-    private List<EntryStock> list;
+    private List<OutgoingStock> list;
     private OnActionListener listener;
 
-    public EntryStockAdapter(Context ctx, List<EntryStock> list, OnActionListener listener) {
+    public OutgoingStockAdapter(Context ctx, List<OutgoingStock> list, OnActionListener listener) {
         this.ctx = ctx;
         this.list = list;
         this.listener = listener;
@@ -40,22 +39,22 @@ public class EntryStockAdapter extends RecyclerView.Adapter<EntryStockAdapter.VH
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(ctx).inflate(R.layout.item_entry_stock, parent, false);
+        View v = LayoutInflater.from(ctx).inflate(R.layout.item_outgoing_stock, parent, false); // Layout baru
         return new VH(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        EntryStock e = list.get(position);
+        OutgoingStock e = list.get(position);
 
         holder.tvFood.setText(e.getFoodName() == null ? "-" : e.getFoodName());
         holder.tvCategory.setText("Category: " + (e.getCategoryName() == null ? "-" : e.getCategoryName()));
+//        holder.tvDestination.setText("By: " + (e.getOperatorName() == null ? "-" : e.getOperatorName())); // Disederhanakan, karena tidak ada supplier
         holder.tvSupplier.setText("Supplier: " + (e.getSupplierName() == null ? "-" : e.getSupplierName())
                 + " — By: " + (e.getOperatorName() == null ? "-" : e.getOperatorName()));
 
         String exp = e.getExp_date() == null ? "-" : new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(e.getExp_date());
-        holder.tvQty.setText("Exp: " + exp + " — Added: " + e.getQty());
-
+        holder.tvQty.setText("Exp: " + exp + " — Removed: " + e.getQty()); // Diubah "Added" menjadi "Removed"
 
         if (e.getImagePath() != null && !e.getImagePath().isEmpty()) {
             holder.img.setImageBitmap(BitmapFactory.decodeFile(e.getImagePath()));
@@ -77,25 +76,26 @@ public class EntryStockAdapter extends RecyclerView.Adapter<EntryStockAdapter.VH
         return list.size();
     }
 
-    public void setList(List<EntryStock> newList) {
+    public void setList(List<OutgoingStock> newList) {
         this.list = newList;
         notifyDataSetChanged();
     }
 
     static class VH extends RecyclerView.ViewHolder {
         ImageView img;
-        TextView tvFood, tvCategory, tvQty, tvSupplier;
+        TextView tvFood, tvCategory, tvQty, tvDestination, tvSupplier;
         Button btnEdit, btnDelete;
 
         public VH(@NonNull View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.imgFoodSmall);
-            tvFood = itemView.findViewById(R.id.tvFoodNameEntry);
-            tvCategory = itemView.findViewById(R.id.tvCategoryEntry);
-            tvQty = itemView.findViewById(R.id.tvQtyEntry);
-            tvSupplier = itemView.findViewById(R.id.tvSupplierEntry);
-            btnEdit = itemView.findViewById(R.id.btnEditEntry);
-            btnDelete = itemView.findViewById(R.id.btnDeleteEntry);
+            img = itemView.findViewById(R.id.imgFoodSmallOutgoing);
+            tvFood = itemView.findViewById(R.id.tvFoodNameOutgoing);
+            tvCategory = itemView.findViewById(R.id.tvCategoryOutgoing);
+            tvQty = itemView.findViewById(R.id.tvQtyOutgoing);
+            tvSupplier = itemView.findViewById(R.id.tvSupplierOutgoing);
+//            tvDestination = itemView.findViewById(R.id.tvDestinationOutgoing);
+            btnEdit = itemView.findViewById(R.id.btnEditOutgoing);
+            btnDelete = itemView.findViewById(R.id.btnDeleteOutgoing);
         }
     }
 }

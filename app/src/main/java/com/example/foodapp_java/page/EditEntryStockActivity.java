@@ -259,7 +259,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodapp_java.R;
-import com.example.foodapp_java.dataClass.StockEntry;
+import com.example.foodapp_java.dataClass.EntryStock;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -268,7 +268,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class EditStockActivity extends AppCompatActivity {
+public class EditEntryStockActivity extends AppCompatActivity {
 
     private Spinner spinnerFood, spinnerSupplier, spinnerExpDate;
     private EditText etQty, btnPickDate;
@@ -287,7 +287,7 @@ public class EditStockActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_stock);
+        setContentView(R.layout.activity_edit_entry_stock);
 
         spinnerFood = findViewById(R.id.spinnerFoodEdit);
         spinnerSupplier = findViewById(R.id.spinnerSupplierEdit);
@@ -327,7 +327,7 @@ public class EditStockActivity extends AppCompatActivity {
 //        currentExpDate = new Date();
 //        currentQty = 10;
 
-        StockEntry entry = (StockEntry) getIntent().getParcelableExtra("entry");
+        EntryStock entry = (EntryStock) getIntent().getParcelableExtra("entry");
         if (entry != null) {
             selectedFoodId = entry.getFoodId();
             selectedSupplierId = entry.getSupplierId();
