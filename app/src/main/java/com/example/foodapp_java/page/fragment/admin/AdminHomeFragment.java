@@ -126,6 +126,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -136,6 +137,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.adapter.NewsAdapter;
 import com.example.foodapp_java.api.NewsResponse;
@@ -153,6 +155,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -189,6 +192,21 @@ public class AdminHomeFragment extends Fragment {
         tvHeader = view.findViewById(R.id.tvHeader);
 
         if (user != null) {
+//            db.collection("users").document(user.getUid())
+//                    .get()
+//                    .addOnSuccessListener(documentSnapshot -> {
+//                        if (documentSnapshot.exists()) {
+//                            String name = documentSnapshot.getString("name");
+//                            if (name != null && !name.isEmpty()) {
+//                                tvHeader.setText("Hi, " + name);
+//                            } else {
+//                                tvHeader.setText("Hi, " + user.getEmail());
+//                            }
+//                        } else {
+//                            tvHeader.setText("Hi, " + user.getEmail());
+//                        }
+//                    })
+
             db.collection("users").document(user.getUid())
                     .get()
                     .addOnSuccessListener(documentSnapshot -> {
@@ -199,10 +217,24 @@ public class AdminHomeFragment extends Fragment {
                             } else {
                                 tvHeader.setText("Hi, " + user.getEmail());
                             }
+
+                            String profileUrl = documentSnapshot.getString("profileUrl");
+                            ImageView imgProfile = view.findViewById(R.id.imgProfile); // pastikan 'view' dalam scope atau simpan sebelumnya
+                            if (profileUrl != null && !profileUrl.isEmpty()) {
+                                File f = new File(profileUrl);
+                                if (f.exists()) {
+                                    Glide.with(getContext()).load(f).circleCrop().into(imgProfile);
+                                } else {
+                                    Glide.with(getContext()).load(R.drawable.profile).circleCrop().into(imgProfile);
+                                }
+                            } else {
+                                Glide.with(getContext()).load(R.drawable.profile).circleCrop().into(imgProfile);
+                            }
                         } else {
                             tvHeader.setText("Hi, " + user.getEmail());
                         }
                     })
+
                     .addOnFailureListener(e -> {
                         Toast.makeText(getContext(), "Failed to load user data", Toast.LENGTH_SHORT).show();
                         tvHeader.setText("Hi, " + user.getEmail());
@@ -253,7 +285,7 @@ public class AdminHomeFragment extends Fragment {
         String apiKey = getString(R.string.news_api_key);
         NewsService service = RetrofitClient.getClient().create(NewsService.class);
 
-        service.searchArticles("food", 10, apiKey, "en")
+        service.searchArticles("food shop", 10, apiKey, "en")
                 .enqueue(new Callback<NewsResponse>() {
                     @Override
                     public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {

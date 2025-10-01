@@ -27,10 +27,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserHomeFragment extends Fragment {
 
@@ -42,10 +45,13 @@ public class UserHomeFragment extends Fragment {
     private FirebaseUser user;
     private FirebaseFirestore db;
 
-    private UserFoodAdapter UserFoodAdapter;
-    private UserCategoryAdapter UserCategoryAdapter;
+    private UserFoodAdapter userFoodAdapter;
+    private UserCategoryAdapter userCategoryAdapter;
     private List<Food> foodList = new ArrayList<>();
     private List<Category> categoryList = new ArrayList<>();
+
+    // favorites map foodId -> favoriteDocId
+    private Map<String, String> favoritesMap = new HashMap<>();
 
     @Nullable
     @Override
@@ -65,11 +71,11 @@ public class UserHomeFragment extends Fragment {
         rvFoods.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         rvCategories.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        UserFoodAdapter = new UserFoodAdapter(getContext(), foodList);
-        rvFoods.setAdapter(UserFoodAdapter);
+        userFoodAdapter = new UserFoodAdapter(getContext(), foodList);
+        rvFoods.setAdapter(userFoodAdapter);
 
-        UserCategoryAdapter = new UserCategoryAdapter(getContext(), (ArrayList<Category>) categoryList);
-        rvCategories.setAdapter(UserCategoryAdapter);
+        userCategoryAdapter = new UserCategoryAdapter(getContext(), (ArrayList<Category>) categoryList);
+        rvCategories.setAdapter(userCategoryAdapter);
 
         // Firebase init
         auth = FirebaseAuth.getInstance();
@@ -84,10 +90,22 @@ public class UserHomeFragment extends Fragment {
                             String name = snapshot.getString("name");
                             tvHeaderUser.setText("Hi, " + (name != null ? name : user.getEmail()));
 
+//                            String profileUrl = snapshot.getString("profileUrl");
+//                            if (profileUrl != null && !profileUrl.isEmpty()) {
+//                                Glide.with(this).load(profileUrl).circleCrop().into(ivProfile);
+//                            }
                             String profileUrl = snapshot.getString("profileUrl");
                             if (profileUrl != null && !profileUrl.isEmpty()) {
-                                Glide.with(this).load(profileUrl).circleCrop().into(ivProfile);
+                                File file = new File(profileUrl);
+                                if (file.exists()) {
+                                    Glide.with(this).load(file).circleCrop().into(ivProfile);
+                                } else {
+                                    Glide.with(this).load(R.drawable.ic_profile).circleCrop().into(ivProfile);
+                                }
+                            } else {
+                                Glide.with(this).load(R.drawable.ic_profile).circleCrop().into(ivProfile);
                             }
+
                         }
                     })
                     .addOnFailureListener(e -> {
@@ -95,10 +113,33 @@ public class UserHomeFragment extends Fragment {
                     });
         }
 
+        // Load favorites first (so adapter can show heart state)
+        fetchFavorites();
         fetchCategories();
         fetchFoods();
 
         return view;
+    }
+
+    private void fetchFavorites() {
+        if (user == null) return;
+        db.collection("favorites")
+                .whereEqualTo("userId", user.getUid())
+                .get()
+                .addOnSuccessListener(q -> {
+                    favoritesMap.clear();
+                    for (QueryDocumentSnapshot doc : q) {
+                        String foodId = doc.getString("foodId");
+                        if (foodId != null) {
+                            favoritesMap.put(foodId, doc.getId());
+                        }
+                    }
+                    // pass to adapter
+                    userFoodAdapter.setFavoritesMap(favoritesMap);
+                })
+                .addOnFailureListener(e -> {
+                    // ignore, leave favoritesMap empty
+                });
     }
 
     private void fetchCategories() {
@@ -110,7 +151,7 @@ public class UserHomeFragment extends Fragment {
                         c.setId(doc.getId());
                         categoryList.add(c);
                     }
-                    UserCategoryAdapter.notifyDataSetChanged();
+                    userCategoryAdapter.notifyDataSetChanged();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getContext(), "Failed to load categories", Toast.LENGTH_SHORT).show();
@@ -124,44 +165,33 @@ public class UserHomeFragment extends Fragment {
                     for (QueryDocumentSnapshot doc : query) {
                         Food f = doc.toObject(Food.class);
                         f.setId(doc.getId());
+                        // Get stock info
+                        db.collection("food_exp_date_stocks")
+                                .whereEqualTo("foodId", f.getId())
+                                .get()
+                                .addOnSuccessListener(stockQuery -> {
+                                    int totalStock = 0;
+                                    Date nearest = null;
 
-                        // Join category
-//                        db.collection("categories").document(f.getCategoryId())
-//                                .get()
-//                                .addOnSuccessListener(catDoc -> {
-//                                    if (catDoc.exists()) {
-//                                        f.setDescription(catDoc.getString("description"));
-//                                    }
+                                    for (QueryDocumentSnapshot sDoc : stockQuery) {
+                                        FoodExpDateStock s = sDoc.toObject(FoodExpDateStock.class);
+                                        totalStock += s.getStock_amount();
 
-                                    // Get stock info
-                                    db.collection("food_exp_date_stocks")
-                                            .whereEqualTo("foodId", f.getId())
-                                            .get()
-                                            .addOnSuccessListener(stockQuery -> {
-                                                int totalStock = 0;
-                                                Date nearest = null;
+                                        Date exp = s.getExp_date();
+                                        if (nearest == null || exp.before(nearest)) {
+                                            nearest = exp;
+                                        }
+                                    }
 
-                                                for (QueryDocumentSnapshot sDoc : stockQuery) {
-                                                    FoodExpDateStock s = sDoc.toObject(FoodExpDateStock.class);
-                                                    totalStock += s.getStock_amount();
+                                    f.setTotalStock(totalStock);
+                                    if (nearest != null) {
+                                        f.setNearestExpDate(nearest);
+                                    }
 
-//                                                    Date exp = s.getExp_date().toDate();
-                                                    Date exp = s.getExp_date();
-                                                    if (nearest == null || exp.before(nearest)) {
-                                                        nearest = exp;
-                                                    }
-                                                }
+                                    foodList.add(f);
+                                    userFoodAdapter.notifyDataSetChanged();
+                                });
 
-                                                f.setTotalStock(totalStock);
-                                                if (nearest != null) {
-//                                                    f.setNearestExpDate(new SimpleDateFormat("dd/MM/yyyy").format(nearest));
-                                                    f.setNearestExpDate(nearest);
-                                                }
-
-                                                foodList.add(f);
-                                                UserFoodAdapter.notifyDataSetChanged();
-                                            });
-//                                });
                     }
                 })
                 .addOnFailureListener(e -> {

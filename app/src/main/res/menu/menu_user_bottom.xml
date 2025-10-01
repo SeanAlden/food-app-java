@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/nav_user_home" android:title="Home" android:icon="@drawable/ic_home"/>
     <item android:id="@+id/nav_user_transaction" android:title="Transactions" android:icon="@drawable/ic_transaction"/>
-    <item android:id="@+id/nav_user_favorite" android:title="Favorite" android:icon="@drawable/ic_favorite"/>
+    <item android:id="@+id/nav_user_favorite" android:title="Favorite" android:icon="@drawable/ic_favorite_bottom_logo"/>
     <item android:id="@+id/nav_user_profile" android:title="Profile" android:icon="@drawable/ic_profile"/>
 </menu>

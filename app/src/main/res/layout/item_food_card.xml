@@ -14,13 +14,40 @@
         android:padding="8dp">
 
         <!-- Gambar -->
-        <ImageView
-            android:id="@+id/ivFoodImage"
+        <!--        <ImageView-->
+        <!--            android:id="@+id/ivFoodImage"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="120dp"-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            android:src="@drawable/food"-->
+        <!--            android:background="@drawable/rounded_bg" />-->
+
+        <!-- IMAGE + FAVORITE BUTTON OVERLAY -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/food"
-            android:background="@drawable/rounded_bg" />
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/ivFoodImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_bg"
+                android:scaleType="centerCrop"
+                android:src="@drawable/food" />
+
+            <!-- Heart button (toggle favorite) -->
+            <ImageButton
+                android:id="@+id/btnFavorite"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Favorite"
+                android:padding="6dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_favorite_border" />
+        </FrameLayout>
 
         <!-- Nama -->
         <TextView
@@ -38,8 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rp 20.000"
-            android:textSize="14sp"
-            android:textColor="@android:color/holo_green_dark" />
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="14sp" />
 
         <!-- Stock -->
         <TextView
@@ -55,8 +82,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Exp: 12/12/2025"
-            android:textSize="13sp"
-            android:textColor="@android:color/holo_red_dark" />
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="13sp" />
 
         <!-- Category Desc -->
         <TextView
@@ -64,8 +91,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Category: Drinks"
-            android:textSize="12sp"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
