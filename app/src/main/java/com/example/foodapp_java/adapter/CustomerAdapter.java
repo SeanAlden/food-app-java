@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 //import com.example.firebaseauth.R;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.User;
 
@@ -39,7 +41,19 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
         holder.txtName.setText(user.getName());
         holder.txtEmail.setText(user.getEmail());
         holder.txtPhone.setText(user.getPhone());
-        holder.imgProfile.setImageResource(R.drawable.profile); // default profile
+
+        // ✅ Load gambar jika ada, fallback ke default
+        if (user.getProfileUrl() != null && !user.getProfileUrl().isEmpty()) {
+            Glide.with(context)
+                    .load(user.getProfileUrl())
+                    .apply(new RequestOptions()
+                            .placeholder(R.drawable.profile) // tampil saat loading
+                            .error(R.drawable.profile)       // tampil jika gagal load
+                            .circleCrop())                   // lingkaran
+                    .into(holder.imgProfile);
+        } else {
+            holder.imgProfile.setImageResource(R.drawable.profile);
+        }
     }
 
     @Override

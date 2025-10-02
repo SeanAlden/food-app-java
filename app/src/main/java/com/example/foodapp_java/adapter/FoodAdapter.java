@@ -18,6 +18,7 @@ import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Food;
 import com.example.foodapp_java.page.EditFoodActivity;
 import com.example.foodapp_java.page.FoodDetailActivity;
+import com.example.foodapp_java.page.UserFoodDetailActivity;
 
 import java.io.File;
 
@@ -92,6 +93,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.VH> {
             i.putExtra("food", f);
             ctx.startActivity(i);
         });
+
     }
 
     @Override

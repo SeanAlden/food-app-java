@@ -80,6 +80,7 @@
 package com.example.foodapp_java.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,6 +96,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Food;
+import com.example.foodapp_java.page.UserFoodDetailActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -194,6 +196,12 @@ public class UserFoodAdapter extends RecyclerView.Adapter<UserFoodAdapter.ViewHo
                         })
                         .addOnFailureListener(e -> Toast.makeText(context, "Failed add favorite", Toast.LENGTH_SHORT).show());
             }
+        });
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, UserFoodDetailActivity.class);
+            intent.putExtra("food", f); // kirim Parcelable Food
+            context.startActivity(intent);
         });
     }
 

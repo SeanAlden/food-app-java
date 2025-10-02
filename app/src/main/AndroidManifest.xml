@@ -15,6 +15,12 @@
         android:theme="@style/Theme.FoodApp_Java"
         tools:targetApi="31">
         <activity
+            android:name=".page.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".page.UserFoodDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".page.NewsDetailActivity"
             android:exported="false" />
         <activity

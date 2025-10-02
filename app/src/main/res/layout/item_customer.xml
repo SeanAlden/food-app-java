@@ -19,7 +19,7 @@
             android:layout_height="60dp"
             android:src="@drawable/profile"
             android:scaleType="centerCrop"
-            android:background="@android:color/darker_gray"
+            android:background="@drawable/circle_bg"
             android:contentDescription="profile image" />
 
         <LinearLayout

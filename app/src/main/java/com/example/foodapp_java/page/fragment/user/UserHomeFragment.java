@@ -1,5 +1,6 @@
 package com.example.foodapp_java.page.fragment.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.example.foodapp_java.adapter.UserFoodAdapter;
 import com.example.foodapp_java.dataClass.Category;
 import com.example.foodapp_java.dataClass.Food;
 import com.example.foodapp_java.dataClass.FoodExpDateStock;
+import com.example.foodapp_java.page.CartActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,6 +41,7 @@ public class UserHomeFragment extends Fragment {
 
     private TextView tvHeaderUser;
     private ImageView ivProfile;
+    private ImageView ivCart;
     private RecyclerView rvFoods, rvCategories;
 
     private FirebaseAuth auth;
@@ -65,6 +68,7 @@ public class UserHomeFragment extends Fragment {
 
         tvHeaderUser = view.findViewById(R.id.tvHeaderUser);
         ivProfile = view.findViewById(R.id.ivProfile);
+        ivCart = view.findViewById(R.id.ivCart);
         rvFoods = view.findViewById(R.id.rvFoods);
         rvCategories = view.findViewById(R.id.rvCategories);
 
@@ -76,6 +80,11 @@ public class UserHomeFragment extends Fragment {
 
         userCategoryAdapter = new UserCategoryAdapter(getContext(), (ArrayList<Category>) categoryList);
         rvCategories.setAdapter(userCategoryAdapter);
+
+        ivCart.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CartActivity.class);
+            startActivity(intent);
+        });
 
         // Firebase init
         auth = FirebaseAuth.getInstance();
