@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="12dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <TextView
+      android:id="@+id/tvTransactionDate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Date: -"
+      android:textSize="16sp"
+      android:textStyle="bold" />
+
+  <TextView
+      android:id="@+id/tvTransactionTotal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Total: Rp 0"
+      android:textSize="16sp"
+      android:layout_marginTop="4dp"
+      android:textStyle="bold" />
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rvTransactionDetail"
+      android:layout_marginTop="8dp"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+</LinearLayout>
