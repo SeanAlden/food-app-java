@@ -18,7 +18,7 @@ import java.util.Locale;
 public class TransactionDetailActivity extends AppCompatActivity {
 
     private RecyclerView rvDetail;
-    private TextView tvTotal, tvDate;
+    private TextView tvTotal, tvDate, tvTrxId;
     private TransactionAdapter adapter;
 
     @Override
@@ -27,6 +27,7 @@ public class TransactionDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_transaction_detail);
 
         rvDetail = findViewById(R.id.rvTransactionDetail);
+        tvTrxId = findViewById(R.id.tvTrxId);
         tvTotal = findViewById(R.id.tvTransactionTotal);
         tvDate = findViewById(R.id.tvTransactionDate);
 
@@ -45,6 +46,7 @@ public class TransactionDetailActivity extends AppCompatActivity {
             return;
         }
 
+        tvTrxId.setText("ID: " + trx.getId());
         tvTotal.setText("Total: Rp " + (long) trx.getTotalPrice());
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
         tvDate.setText("Date: " + sdf.format(trx.getTimestamp()));

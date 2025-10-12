@@ -55,7 +55,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
         // default values
         holder.tvTransTotal.setText("Total: Rp " + (long) trx.getTotalPrice());
-        holder.tvTransExp.setText("Exp nearest: -");
+        holder.tvTransExp.setText("Exp date: -");
         holder.tvTransName.setText("Transaction #" + trx.getId());
 
         // compute total distinct items and total quantity
@@ -92,9 +92,14 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
                             String title = f.getName() == null ? "-" : f.getName();
                             if (distinctCount > 1) {
-                                title = title + " +" + (distinctCount - 1) + " items";
+                                holder.tvTransName.setText(title);
                             }
-                            holder.tvTransName.setText(title);
+
+                            holder.tvDetailClick.setText("Click to see " + "+" + (distinctCount - 1) + " items");
+
+                            holder.tvId.setText("ID: " + String.valueOf(trx.getId()));
+
+                            holder.tvTime.setText(tsText);
 
                             if (f.getImagePath() != null && !f.getImagePath().isEmpty()) {
                                 Glide.with(ctx).load(f.getImagePath()).placeholder(R.drawable.food).into(holder.ivTransImage);
@@ -117,17 +122,17 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
                                         }
                                         if (nearest != null) {
                                             SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                                            holder.tvTransExp.setText("Exp nearest: " + sdf2.format(nearest));
+                                            holder.tvTransExp.setText("Exp date: " + sdf2.format(nearest));
                                         } else {
-                                            holder.tvTransExp.setText("Exp nearest: -");
+                                            holder.tvTransExp.setText("Exp date: -");
                                         }
                                     })
-                                    .addOnFailureListener(e -> holder.tvTransExp.setText("Exp nearest: -"));
+                                    .addOnFailureListener(e -> holder.tvTransExp.setText("Exp date: -"));
                         })
                         .addOnFailureListener(e -> {
                             holder.ivTransImage.setImageResource(R.drawable.food);
                             holder.tvTransName.setText("Unknown product" + (distinctCount > 1 ? " +" + (distinctCount - 1) + " items" : ""));
-                            holder.tvTransExp.setText("Exp nearest: -");
+                            holder.tvTransExp.setText("Exp date: -");
                         });
             }
         }
@@ -156,14 +161,17 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
     static class VH extends RecyclerView.ViewHolder {
         ImageView ivTransImage;
-        TextView tvTransName, tvTransExp, tvTransTotal;
+        TextView tvId, tvTransName, tvDetailClick, tvTransExp, tvTransTotal, tvTime;
 
         VH(@NonNull View itemView) {
             super(itemView);
             ivTransImage = itemView.findViewById(R.id.ivTransImage);
+            tvId = itemView.findViewById(R.id.tvId);
             tvTransName = itemView.findViewById(R.id.tvTransName);
+            tvDetailClick = itemView.findViewById(R.id.tvDetailClick);
             tvTransExp = itemView.findViewById(R.id.tvTransExp);
             tvTransTotal = itemView.findViewById(R.id.tvTransTotal);
+            tvTime = itemView.findViewById(R.id.tvTime);
         }
     }
 }
