@@ -1,5 +1,5 @@
 <resources>
-<!--    <string name="app_name">FoodApp_Java</string>-->
+    <!--    <string name="app_name">FoodApp_Java</string>-->
     <string name="app_name">SA Food App</string>
     <string name="login">Login</string>
     <string name="email">email</string>

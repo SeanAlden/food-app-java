@@ -38,5 +38,15 @@
             android:layout_marginTop="12dp"
             android:textSize="14sp"/>
 
+        <Button
+            android:id="@+id/btnReadFull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read Full News"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@android:color/white"
+            android:padding="12dp"/>
+
     </LinearLayout>
 </ScrollView>

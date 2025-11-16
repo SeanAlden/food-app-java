@@ -562,9 +562,12 @@ import com.example.foodapp_java.dataBaseOffline.TransactionOfflineDatabase;
 import com.example.foodapp_java.dataClass.Article;
 import com.example.foodapp_java.page.CategoryActivity;
 import com.example.foodapp_java.page.CustomerActivity;
+import com.example.foodapp_java.page.EntryStockActivity;
 import com.example.foodapp_java.page.FavoriteActivity;
 import com.example.foodapp_java.page.FoodActivity;
+import com.example.foodapp_java.page.InactiveFoodActivity;
 import com.example.foodapp_java.page.NewsDetailActivity;
+import com.example.foodapp_java.page.OutgoingStockActivity;
 import com.example.foodapp_java.page.StockManagementActivity;
 import com.example.foodapp_java.page.SupplierActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -626,14 +629,18 @@ public class AdminHomeFragment extends Fragment {
         ImageButton btnCustomer = view.findViewById(R.id.btnCustomer);
         ImageButton btnFavorite = view.findViewById(R.id.btnFavorite);
         ImageButton btnSupplier = view.findViewById(R.id.btnSupplier);
-        ImageButton btnStockManagement = view.findViewById(R.id.btnStockManagement);
+        ImageButton btnEntryStok = view.findViewById(R.id.btnEntryStock);
+        ImageButton btnExitStok = view.findViewById(R.id.btnExitStock);
+        ImageButton btnInactiveFood = view.findViewById(R.id.btnInactiveFood);
 
         btnFood.setOnClickListener(v -> startActivity(new Intent(getActivity(), FoodActivity.class)));
         btnCategory.setOnClickListener(v -> startActivity(new Intent(getActivity(), CategoryActivity.class)));
         btnCustomer.setOnClickListener(v -> startActivity(new Intent(getActivity(), CustomerActivity.class)));
         btnFavorite.setOnClickListener(v -> startActivity(new Intent(getActivity(), FavoriteActivity.class)));
-        btnStockManagement.setOnClickListener(v -> startActivity(new Intent(getActivity(), StockManagementActivity.class)));
+        btnEntryStok.setOnClickListener(v -> startActivity(new Intent(getActivity(), EntryStockActivity.class)));
         btnSupplier.setOnClickListener(v -> startActivity(new Intent(getActivity(), SupplierActivity.class)));
+        btnExitStok.setOnClickListener(v -> startActivity(new Intent(getActivity(), OutgoingStockActivity.class)));
+        btnInactiveFood.setOnClickListener(v -> startActivity(new Intent(getActivity(), InactiveFoodActivity.class)));
 
         // RecyclerView setup
         RecyclerView rvNews = view.findViewById(R.id.recyclerNews);

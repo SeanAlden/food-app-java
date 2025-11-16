@@ -48,21 +48,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp" />
 
-        <Button
-            android:id="@+id/btnSupplierEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:layout_marginTop="12dp" />
+<!--        <Button-->
+<!--            android:id="@+id/btnSupplierEdit"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Edit"-->
+<!--            android:layout_marginTop="12dp" />-->
 
-        <Button
-            android:id="@+id/btnSupplierDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@android:color/holo_red_dark"
-            android:textColor="@android:color/white" />
+<!--        <Button-->
+<!--            android:id="@+id/btnSupplierDelete"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Delete"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:backgroundTint="@android:color/holo_red_dark"-->
+<!--            android:textColor="@android:color/white" />-->
 
     </LinearLayout>
 </ScrollView>

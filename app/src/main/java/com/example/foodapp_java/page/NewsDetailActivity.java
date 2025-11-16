@@ -1,9 +1,13 @@
 // app/src/main/java/com/example/foodapp_java/page/NewsDetailActivity.java
 package com.example.foodapp_java.page;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +24,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
     ImageView img;
     TextView tvTitle, tvPublishedAt, tvDesc;
+    Button btnReadFull;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitleDetail);
         tvPublishedAt = findViewById(R.id.tvPublishedAt);
         tvDesc = findViewById(R.id.tvDescDetail);
+        btnReadFull = findViewById(R.id.btnReadFull);
 
         Article a = (Article) getIntent().getSerializableExtra("article");
         if (a != null) {
@@ -45,6 +51,17 @@ public class NewsDetailActivity extends AppCompatActivity {
 
             String published = a.getPublishedAt();
             tvPublishedAt.setText(formatPublishedAt(published));
+
+            // === Tombol Read Full News ===
+            String url = a.getUrl();
+            btnReadFull.setOnClickListener(v -> {
+                if (url != null && !url.isEmpty()) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, "No URL available", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

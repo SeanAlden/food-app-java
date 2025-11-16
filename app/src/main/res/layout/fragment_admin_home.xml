@@ -8,7 +8,6 @@
     android:background="@color/light_gray_bg"
     tools:context=".page.fragment.admin.AdminHomeFragment">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -237,7 +236,7 @@
                     android:clipToOutline="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/favorite_logo"
-                    app:layout_constraintEnd_toStartOf="@+id/btnStockManagement"
+                    app:layout_constraintEnd_toStartOf="@+id/btnEntryStock"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -252,26 +251,27 @@
                     app:layout_constraintTop_toBottomOf="@+id/btnFavorite" />
 
                 <ImageButton
-                    android:id="@+id/btnStockManagement"
+                    android:id="@+id/btnEntryStock"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:background="@drawable/circle_mask"
                     android:clipToOutline="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/stock_management"
+                    android:src="@drawable/entry_stock"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tvEntryStock"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Stock Management"
+                    android:text="Entry Stock"
                     android:textColor="@color/text_primary"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnStockManagement" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnEntryStock" />
 
                 <ImageButton
                     android:id="@+id/btnSupplier"
@@ -282,7 +282,7 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/supplier_logo"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/btnStockManagement"
+                    app:layout_constraintStart_toEndOf="@+id/btnEntryStock"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -294,6 +294,91 @@
                     app:layout_constraintEnd_toEndOf="@+id/btnSupplier"
                     app:layout_constraintStart_toStartOf="@+id/btnSupplier"
                     app:layout_constraintTop_toBottomOf="@+id/btnSupplier" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="20dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/button_background_selector"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!-- Guideline 25% -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.25" />
+
+                <!-- Guideline 75% -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline75"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.75" />
+
+                <!-- Button 1: Inactive Food (25%) -->
+                <ImageButton
+                    android:id="@+id/btnInactiveFood"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/circle_mask"
+                    android:clipToOutline="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/warehouse"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/guideline25"
+                    app:layout_constraintStart_toStartOf="@id/guideline25"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Button 2: Exit Stock (75%) -->
+                <ImageButton
+                    android:id="@+id/btnExitStock"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/circle_mask"
+                    android:clipToOutline="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/exit_stock"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/guideline75"
+                    app:layout_constraintStart_toStartOf="@id/guideline75"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvExitStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exit Stock"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btnExitStock"
+                    app:layout_constraintStart_toStartOf="@+id/btnExitStock"
+                    app:layout_constraintTop_toBottomOf="@+id/btnExitStock" />
+
+                <TextView
+                    android:id="@+id/tvInactiveFood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inactive Food"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btnInactiveFood"
+                    app:layout_constraintStart_toStartOf="@+id/btnInactiveFood"
+                    app:layout_constraintTop_toBottomOf="@+id/btnExitStock" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -315,6 +400,9 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_news" />
 
+
         </LinearLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

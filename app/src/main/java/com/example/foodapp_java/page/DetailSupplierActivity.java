@@ -21,7 +21,7 @@ public class DetailSupplierActivity extends AppCompatActivity {
     private Supplier supplier;
     private ImageView iv;
     private TextView tvName, tvCode, tvPhone, tvAddress, tvDesc;
-    private Button btnEdit, btnDelete;
+//    private Button btnEdit, btnDelete;
     private FirebaseFirestore db;
 
     @Override
@@ -38,8 +38,8 @@ public class DetailSupplierActivity extends AppCompatActivity {
         tvPhone = findViewById(R.id.tvSupplierDetailPhone);
         tvAddress = findViewById(R.id.tvSupplierDetailAddress);
         tvDesc = findViewById(R.id.tvSupplierDetailDesc);
-        btnEdit = findViewById(R.id.btnSupplierEdit);
-        btnDelete = findViewById(R.id.btnSupplierDelete);
+//        btnEdit = findViewById(R.id.btnSupplierEdit);
+//        btnDelete = findViewById(R.id.btnSupplierDelete);
 
         if (supplier != null) {
             tvName.setText(supplier.getName());
@@ -56,35 +56,35 @@ public class DetailSupplierActivity extends AppCompatActivity {
             } else iv.setImageResource(R.drawable.supplier);
         }
 
-        btnEdit.setOnClickListener(v -> {
-            Intent i = new Intent(this, EditSupplierActivity.class);
-            i.putExtra("supplier", supplier);
-            startActivityForResult(i, 1234);
-        });
-
-        btnDelete.setOnClickListener(v -> {
-            new AlertDialog.Builder(this)
-                    .setTitle("Delete supplier")
-                    .setMessage("Are you sure to delete this supplier?")
-                    .setPositiveButton("Delete", (dialog, which) -> {
-                        db.collection("suppliers").document(supplier.getId())
-                                .delete()
-                                .addOnSuccessListener(aVoid -> {
-                                    // try delete image file locally
-                                    String img = supplier.getImage();
-                                    if (img != null && !img.isEmpty()) {
-                                        File f = new File(img);
-                                        if (f.exists()) f.delete();
-                                    }
-                                    Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
-                                    setResult(RESULT_OK);
-                                    finish();
-                                })
-                                .addOnFailureListener(e -> Toast.makeText(this, "Delete failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-                    })
-                    .setNegativeButton("Cancel", null)
-                    .show();
-        });
+//        btnEdit.setOnClickListener(v -> {
+//            Intent i = new Intent(this, EditSupplierActivity.class);
+//            i.putExtra("supplier", supplier);
+//            startActivityForResult(i, 1234);
+//        });
+//
+//        btnDelete.setOnClickListener(v -> {
+//            new AlertDialog.Builder(this)
+//                    .setTitle("Delete supplier")
+//                    .setMessage("Are you sure to delete this supplier?")
+//                    .setPositiveButton("Delete", (dialog, which) -> {
+//                        db.collection("suppliers").document(supplier.getId())
+//                                .delete()
+//                                .addOnSuccessListener(aVoid -> {
+//                                    // try delete image file locally
+//                                    String img = supplier.getImage();
+//                                    if (img != null && !img.isEmpty()) {
+//                                        File f = new File(img);
+//                                        if (f.exists()) f.delete();
+//                                    }
+//                                    Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
+//                                    setResult(RESULT_OK);
+//                                    finish();
+//                                })
+//                                .addOnFailureListener(e -> Toast.makeText(this, "Delete failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+//                    })
+//                    .setNegativeButton("Cancel", null)
+//                    .show();
+//        });
     }
 
     @Override

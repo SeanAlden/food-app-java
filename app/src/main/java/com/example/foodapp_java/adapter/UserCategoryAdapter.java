@@ -1,6 +1,7 @@
 package com.example.foodapp_java.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Category;
+import com.example.foodapp_java.dataClass.Supplier;
+import com.example.foodapp_java.page.CategoryDetailActivity;
 
 import java.util.List;
 
@@ -38,6 +41,15 @@ public class UserCategoryAdapter extends RecyclerView.Adapter<UserCategoryAdapte
 
         holder.tvName.setText(c.getName());
         holder.ivImage.setImageResource(R.drawable.category); // default image
+
+        // === CLICK LISTENER UNTUK PINDAH HALAMAN ===
+        holder.itemView.setOnClickListener(v -> {
+            Intent i = new Intent(context, CategoryDetailActivity.class);
+            i.putExtra("categoryId", c.getId());
+            i.putExtra("categoryName", c.getName());
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
+        });
     }
 
     @Override
