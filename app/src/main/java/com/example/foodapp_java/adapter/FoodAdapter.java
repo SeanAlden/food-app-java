@@ -3,7 +3,6 @@ package com.example.foodapp_java.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Food;
-import com.example.foodapp_java.page.EditFoodActivity;
-import com.example.foodapp_java.page.FoodDetailActivity;
-import com.example.foodapp_java.page.UserFoodDetailActivity;
+import com.example.foodapp_java.page.activity.EditFoodActivity;
+import com.example.foodapp_java.page.activity.FoodDetailActivity;
 
 import java.io.File;
 

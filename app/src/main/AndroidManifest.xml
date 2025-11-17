@@ -15,88 +15,91 @@
         android:theme="@style/Theme.FoodApp_Java"
         tools:targetApi="31">
         <activity
-            android:name=".page.InactiveFoodActivity"
+            android:name=".page.activity.FoodSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".page.CategoryDetailActivity"
+            android:name=".page.activity.InactiveFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".page.TransactionDetailActivity"
+            android:name=".page.activity.CategoryDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".page.CartActivity"
+            android:name=".page.activity.TransactionDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".page.UserFoodDetailActivity"
+            android:name=".page.activity.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".page.NewsDetailActivity"
+            android:name=".page.activity.UserFoodDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".page.AddOutgoingStockActivity"
+            android:name=".page.activity.NewsDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".page.OutgoingStockActivity"
+            android:name=".page.activity.AddOutgoingStockActivity"
             android:exported="false" />
         <activity
-            android:name=".page.EditEntryStockActivity"
+            android:name=".page.activity.OutgoingStockActivity"
             android:exported="false" />
         <activity
-            android:name=".page.AddEntryStockActivity"
+            android:name=".page.activity.EditEntryStockActivity"
             android:exported="false" />
         <activity
-            android:name=".page.EntryStockActivity"
+            android:name=".page.activity.AddEntryStockActivity"
             android:exported="false" />
         <activity
-            android:name=".page.UserFragmentActivity"
+            android:name=".page.activity.EntryStockActivity"
             android:exported="false" />
         <activity
-            android:name=".page.AdminFragmentActivity"
+            android:name=".page.activity.UserFragmentActivity"
             android:exported="false" />
         <activity
-            android:name=".page.StockManagementActivity"
+            android:name=".page.activity.AdminFragmentActivity"
             android:exported="false" />
         <activity
-            android:name=".page.DetailSupplierActivity"
+            android:name=".page.activity.StockManagementActivity"
             android:exported="false" />
         <activity
-            android:name=".page.EditSupplierActivity"
+            android:name=".page.activity.DetailSupplierActivity"
             android:exported="false" />
         <activity
-            android:name=".page.AddSupplierActivity"
+            android:name=".page.activity.EditSupplierActivity"
             android:exported="false" />
         <activity
-            android:name=".page.SupplierActivity"
+            android:name=".page.activity.AddSupplierActivity"
             android:exported="false" />
         <activity
-            android:name=".page.EditFoodActivity"
+            android:name=".page.activity.SupplierActivity"
             android:exported="false" />
         <activity
-            android:name=".page.AddFoodActivity"
+            android:name=".page.activity.EditFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".page.EditCategoryActivity"
+            android:name=".page.activity.AddFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".page.AddCategoryActivity"
+            android:name=".page.activity.EditCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".page.HomeActivity"
+            android:name=".page.activity.AddCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".page.FavoriteActivity"
+            android:name=".page.activity.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".page.CustomerActivity"
+            android:name=".page.activity.FavoriteActivity"
             android:exported="false" />
         <activity
-            android:name=".page.CategoryActivity"
+            android:name=".page.activity.CustomerActivity"
             android:exported="false" />
         <activity
-            android:name=".page.FoodActivity"
+            android:name=".page.activity.CategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".page.FoodDetailActivity"
+            android:name=".page.activity.FoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".page.activity.FoodDetailActivity"
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".adapter.NewsAdapter" -->
         <!-- android:exported="false" /> -->
@@ -104,11 +107,11 @@
         <!-- android:name=".page.AdminHomeActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".page.RegisterActivity"
+            android:name=".page.activity.RegisterActivity"
             android:exported="true"
             android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
-            android:name=".page.LoginActivity"
+            android:name=".page.activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.Material3.Light.NoActionBar" /> <!-- <activity -->
         <!-- android:name=".page.LoginActivity" -->

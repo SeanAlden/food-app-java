@@ -96,7 +96,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Food;
-import com.example.foodapp_java.page.UserFoodDetailActivity;
+import com.example.foodapp_java.page.activity.UserFoodDetailActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 

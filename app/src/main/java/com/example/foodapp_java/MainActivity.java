@@ -60,8 +60,8 @@
 //import android.widget.Toast;
 //
 //import com.example.foodapp_java.page.AdminHomeActivity;
-//import com.example.foodapp_java.page.HomeActivity;
-//import com.example.foodapp_java.page.LoginActivity;
+//import com.example.foodapp_java.page.activity.HomeActivity;
+//import com.example.foodapp_java.page.activity.LoginActivity;
 //import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.auth.FirebaseUser;
 //import com.google.firebase.firestore.DocumentSnapshot;
@@ -135,9 +135,9 @@ import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.foodapp_java.page.AdminFragmentActivity;
-import com.example.foodapp_java.page.LoginActivity;
-import com.example.foodapp_java.page.UserFragmentActivity;
+import com.example.foodapp_java.page.activity.AdminFragmentActivity;
+import com.example.foodapp_java.page.activity.LoginActivity;
+import com.example.foodapp_java.page.activity.UserFragmentActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;

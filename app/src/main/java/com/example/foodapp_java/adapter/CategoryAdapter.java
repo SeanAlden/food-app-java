@@ -12,7 +12,7 @@
 //import androidx.recyclerview.widget.RecyclerView;
 //
 ////import com.example.firebaseauth.R;
-//import com.example.foodapp_java.page.EditCategoryActivity;
+//import com.example.foodapp_java.page.activity.EditCategoryActivity;
 //import com.example.foodapp_java.R;
 //import com.example.foodapp_java.dataClass.Category;
 //import com.google.firebase.firestore.FirebaseFirestore;
@@ -100,8 +100,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodapp_java.page.CategoryDetailActivity;
-import com.example.foodapp_java.page.EditCategoryActivity;
+import com.example.foodapp_java.page.activity.CategoryDetailActivity;
+import com.example.foodapp_java.page.activity.EditCategoryActivity;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Category;
 import com.google.firebase.firestore.FirebaseFirestore;

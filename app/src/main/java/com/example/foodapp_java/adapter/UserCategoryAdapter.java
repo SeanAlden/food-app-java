@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Category;
-import com.example.foodapp_java.dataClass.Supplier;
-import com.example.foodapp_java.page.CategoryDetailActivity;
+import com.example.foodapp_java.page.activity.CategoryDetailActivity;
 
 import java.util.List;
 

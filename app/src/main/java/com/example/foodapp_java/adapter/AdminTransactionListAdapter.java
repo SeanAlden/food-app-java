@@ -17,7 +17,7 @@ import com.example.foodapp_java.dataBaseOffline.TransactionOffline;
 import com.example.foodapp_java.dataClass.CartItem;
 import com.example.foodapp_java.dataClass.Food;
 import com.example.foodapp_java.dataClass.FoodExpDateStock;
-import com.example.foodapp_java.page.TransactionDetailActivity;
+import com.example.foodapp_java.page.activity.TransactionDetailActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 

@@ -23,14 +23,14 @@ import com.example.foodapp_java.adapter.UserFoodAdapter;
 import com.example.foodapp_java.dataClass.Category;
 import com.example.foodapp_java.dataClass.Food;
 import com.example.foodapp_java.dataClass.FoodExpDateStock;
-import com.example.foodapp_java.page.CartActivity;
+import com.example.foodapp_java.page.activity.CartActivity;
+import com.example.foodapp_java.page.activity.FoodSearchActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,7 +41,7 @@ public class UserHomeFragment extends Fragment {
 
     private TextView tvHeaderUser;
     private ImageView ivProfile;
-    private ImageView ivCart;
+    private ImageView ivCart, ivSearch;
     private RecyclerView rvFoods, rvCategories;
 
     private FirebaseAuth auth;
@@ -69,6 +69,7 @@ public class UserHomeFragment extends Fragment {
         tvHeaderUser = view.findViewById(R.id.tvHeaderUser);
         ivProfile = view.findViewById(R.id.ivProfile);
         ivCart = view.findViewById(R.id.ivCart);
+        ivSearch = view.findViewById(R.id.ivSearch);
         rvFoods = view.findViewById(R.id.rvFoods);
         rvCategories = view.findViewById(R.id.rvCategories);
 
@@ -83,6 +84,11 @@ public class UserHomeFragment extends Fragment {
 
         ivCart.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), CartActivity.class);
+            startActivity(intent);
+        });
+
+        ivSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), FoodSearchActivity.class);
             startActivity(intent);
         });
 

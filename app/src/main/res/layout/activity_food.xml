@@ -5,13 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".page.FoodActivity">
+    tools:context=".page.activity.FoodActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarFood"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/purple_dark"
+        app:navigationIconTint="@color/white"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView

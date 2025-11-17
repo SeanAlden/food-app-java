@@ -15,8 +15,8 @@
 //import androidx.fragment.app.Fragment;
 //
 //import com.example.foodapp_java.R;
-//import com.example.foodapp_java.page.HomeActivity;
-//import com.example.foodapp_java.page.LoginActivity;
+//import com.example.foodapp_java.page.activity.HomeActivity;
+//import com.example.foodapp_java.page.activity.LoginActivity;
 //import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.auth.FirebaseUser;
 //import com.google.firebase.firestore.FirebaseFirestore;
@@ -112,7 +112,7 @@
 //
 //import com.bumptech.glide.Glide;
 //import com.example.foodapp_java.R;
-//import com.example.foodapp_java.page.LoginActivity;
+//import com.example.foodapp_java.page.activity.LoginActivity;
 //import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.auth.FirebaseUser;
 //import com.google.firebase.firestore.FirebaseFirestore;
@@ -277,7 +277,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.foodapp_java.R;
-import com.example.foodapp_java.page.LoginActivity;
+import com.example.foodapp_java.page.activity.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
