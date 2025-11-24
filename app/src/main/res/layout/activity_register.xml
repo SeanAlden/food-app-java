@@ -94,6 +94,22 @@
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Address -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Address"
+                app:startIconDrawable="@drawable/ic_location"
+                app:startIconTint="@color/purple_primary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <!-- Password -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

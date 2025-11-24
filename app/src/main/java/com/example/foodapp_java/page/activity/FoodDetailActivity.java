@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Food;
@@ -36,6 +37,14 @@ public class FoodDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
+
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarFoodDetail);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(" ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         food = getIntent().getParcelableExtra("food");
         iv = findViewById(R.id.ivFoodDetailImage);
@@ -112,5 +121,10 @@ public class FoodDetailActivity extends AppCompatActivity {
                         }
                     }
                 }).addOnFailureListener(e -> Log.w(TAG, "load exp failed", e));
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

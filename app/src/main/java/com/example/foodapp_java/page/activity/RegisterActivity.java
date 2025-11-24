@@ -135,7 +135,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    TextInputEditText editTextName, editTextEmail, editTextPhone, editTextPassword;
+    TextInputEditText editTextName, editTextEmail, editTextPhone, editTextPassword, editTextAddress;
     Button buttonReg;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
@@ -169,6 +169,7 @@ public class RegisterActivity extends AppCompatActivity {
         buttonReg = findViewById(R.id.btn_register);
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.loginNow);
+        editTextAddress = findViewById(R.id.address);
 
         textView.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -178,12 +179,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         buttonReg.setOnClickListener(view -> {
             progressBar.setVisibility(View.VISIBLE);
-            String name, email, phone ,password;
+            String name, email, phone ,password, address;
 
             name = String.valueOf(editTextName.getText());
             email = String.valueOf(editTextEmail.getText());
             phone = String.valueOf(editTextPhone.getText());
             password = String.valueOf(editTextPassword.getText());
+            address = String.valueOf(editTextAddress.getText());
 
             if (TextUtils.isEmpty(name)){
                 Toast.makeText(RegisterActivity.this, "Enter name", Toast.LENGTH_SHORT).show();
@@ -201,6 +203,11 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (TextUtils.isEmpty(address)){
+                Toast.makeText(RegisterActivity.this, "Enter address", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                return;
+            }
 
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
@@ -215,6 +222,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 userMap.put("phone", phone);
                                 userMap.put("email", email);
                                 userMap.put("usertype", "user");
+                                userMap.put("address", address);
 
                                 db.collection("users")
                                         .document(user.getUid())

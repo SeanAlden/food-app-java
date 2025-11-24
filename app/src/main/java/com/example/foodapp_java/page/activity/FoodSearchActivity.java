@@ -15,7 +15,6 @@ import com.example.foodapp_java.R;
 import com.example.foodapp_java.adapter.FoodSearchAdapter;
 import com.example.foodapp_java.dataClass.Favorite;
 import com.example.foodapp_java.dataClass.Food;
-import com.example.foodapp_java.page.activity.FoodDetailActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -41,7 +40,7 @@ public class FoodSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food_search);
 
         // Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbarFoodDetail);
+        Toolbar toolbar = findViewById(R.id.toolbarCategoryDetail);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(" ");

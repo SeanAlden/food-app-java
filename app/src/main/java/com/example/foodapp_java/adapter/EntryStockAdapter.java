@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.EntryStock;
 
@@ -57,11 +58,22 @@ public class EntryStockAdapter extends RecyclerView.Adapter<EntryStockAdapter.VH
         holder.tvQty.setText("Exp: " + exp + " — Added: " + e.getQty());
 
 
+//        if (e.getImagePath() != null && !e.getImagePath().isEmpty()) {
+//            holder.img.setImageBitmap(BitmapFactory.decodeFile(e.getImagePath()));
+//        } else {
+//            holder.img.setImageResource(R.drawable.food);
+//        }
+
         if (e.getImagePath() != null && !e.getImagePath().isEmpty()) {
-            holder.img.setImageBitmap(BitmapFactory.decodeFile(e.getImagePath()));
+            Glide.with(ctx)
+                    .load(e.getImagePath())
+                    .placeholder(R.drawable.food)
+                    .error(R.drawable.food)
+                    .into(holder.img);
         } else {
             holder.img.setImageResource(R.drawable.food);
         }
+
 
         holder.btnEdit.setOnClickListener(v -> {
             if (listener != null) listener.onEdit(e);

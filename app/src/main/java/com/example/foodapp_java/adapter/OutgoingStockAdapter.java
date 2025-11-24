@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.OutgoingStock; // Diubah
 
@@ -23,6 +24,7 @@ public class OutgoingStockAdapter extends RecyclerView.Adapter<OutgoingStockAdap
 
     public interface OnActionListener {
         void onEdit(OutgoingStock entry);
+
         void onDelete(OutgoingStock entry);
     }
 
@@ -56,8 +58,18 @@ public class OutgoingStockAdapter extends RecyclerView.Adapter<OutgoingStockAdap
         String exp = e.getExp_date() == null ? "-" : new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(e.getExp_date());
         holder.tvQty.setText("Exp: " + exp + " — Removed: " + e.getQty()); // Diubah "Added" menjadi "Removed"
 
+//        if (e.getImagePath() != null && !e.getImagePath().isEmpty()) {
+//            holder.img.setImageBitmap(BitmapFactory.decodeFile(e.getImagePath()));
+//        } else {
+//            holder.img.setImageResource(R.drawable.food);
+//        }
+
         if (e.getImagePath() != null && !e.getImagePath().isEmpty()) {
-            holder.img.setImageBitmap(BitmapFactory.decodeFile(e.getImagePath()));
+            Glide.with(ctx)
+                    .load(e.getImagePath())
+                    .placeholder(R.drawable.food)
+                    .error(R.drawable.food)
+                    .into(holder.img);
         } else {
             holder.img.setImageResource(R.drawable.food);
         }

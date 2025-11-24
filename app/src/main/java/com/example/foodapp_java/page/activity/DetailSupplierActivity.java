@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Supplier;
@@ -21,13 +22,21 @@ public class DetailSupplierActivity extends AppCompatActivity {
     private Supplier supplier;
     private ImageView iv;
     private TextView tvName, tvCode, tvPhone, tvAddress, tvDesc;
-//    private Button btnEdit, btnDelete;
+    //    private Button btnEdit, btnDelete;
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_supplier);
+
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarSupplierDetail);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(" ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         supplier = getIntent().getParcelableExtra("supplier");
         db = FirebaseFirestore.getInstance();
@@ -96,5 +105,11 @@ public class DetailSupplierActivity extends AppCompatActivity {
             setResult(RESULT_OK);
             finish();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

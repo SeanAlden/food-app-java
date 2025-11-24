@@ -232,6 +232,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.page.activity.LoginActivity;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -249,8 +251,8 @@ public class AdminProfileFragment extends Fragment {
     private FirebaseUser user;
 
     private ImageView ivAdminProfile;
-    private Button btnChangeAdminPhoto, btnLogout, btnEditProfile;
-    private TextView tvAdminHello, tvAdminEmail, tvAdminPhone;
+    private Button btnChangeAdminPhoto, btnLogout, btnEditProfile, btnChangePassword, btnChangeAddress;
+    private TextView tvAdminHello, tvAdminEmail, tvAdminPhone, tvAdminAddress;
 
     private ActivityResultLauncher<Intent> pickImageLauncher;
 
@@ -266,9 +268,15 @@ public class AdminProfileFragment extends Fragment {
         btnChangeAdminPhoto = view.findViewById(R.id.btnChangeAdminPhoto);
         btnLogout = view.findViewById(R.id.btnLogout);
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
+        btnChangePassword = view.findViewById(R.id.btnChangePassword);
+        btnChangeAddress = view.findViewById(R.id.btnChangeAddress);
+
+        btnChangePassword.setOnClickListener(v -> showChangePasswordDialog());
+        btnChangeAddress.setOnClickListener(v -> showChangeAddressDialog());
         tvAdminHello = view.findViewById(R.id.tvAdminHello);
         tvAdminEmail = view.findViewById(R.id.tvAdminEmail);
         tvAdminPhone = view.findViewById(R.id.tvAdminPhone);
+        tvAdminAddress = view.findViewById(R.id.tvAdminAddress);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -303,15 +311,102 @@ public class AdminProfileFragment extends Fragment {
                         String email = doc.getString("email");
                         String phone = doc.getString("phone");
                         String profileUrl = doc.getString("profileUrl");
+                        String address = doc.getString("address");
 
                         tvAdminHello.setText("Hi, " + (name != null && !name.isEmpty() ? name : "Admin"));
                         tvAdminEmail.setText(email != null ? email : "-");
                         tvAdminPhone.setText(phone != null ? phone : "-");
+                        tvAdminAddress.setText(address != null ? address : "-");
 
                         loadProfileImage(profileUrl);
                     }
                 })
                 .addOnFailureListener(e -> Toast.makeText(getContext(), "Gagal memuat data admin", Toast.LENGTH_SHORT).show());
+    }
+
+    private void showChangeAddressDialog() {
+        EditText et = new EditText(getContext());
+        et.setInputType(InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
+        et.setHint("Enter new address");
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Change Address")
+                .setView(et)
+                .setPositiveButton("Save", (dialog, which) -> {
+                    String newAddress = et.getText().toString().trim();
+                    if (newAddress.isEmpty()) {
+                        Toast.makeText(getContext(), "Address cannot be empty", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Map<String, Object> updates = new HashMap<>();
+                    updates.put("address", newAddress);
+                    db.collection("users").document(user.getUid())
+                            .update(updates)
+                            .addOnSuccessListener(aVoid -> {
+                                Toast.makeText(getContext(), "Address updated", Toast.LENGTH_SHORT).show();
+                                loadAdminData();
+                            })
+                            .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to update address", Toast.LENGTH_SHORT).show());
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void showChangePasswordDialog() {
+        // create vertical layout with 3 EditTexts
+        android.widget.LinearLayout container = new android.widget.LinearLayout(getContext());
+        container.setOrientation(android.widget.LinearLayout.VERTICAL);
+        int pad = (int) (8 * getResources().getDisplayMetrics().density);
+        container.setPadding(pad, pad, pad, pad);
+
+        EditText etCurrent = new EditText(getContext());
+        etCurrent.setHint("Current password");
+        etCurrent.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        container.addView(etCurrent);
+
+        EditText etNew = new EditText(getContext());
+        etNew.setHint("New password (min 6)");
+        etNew.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        container.addView(etNew);
+
+        EditText etConfirm = new EditText(getContext());
+        etConfirm.setHint("Confirm new password");
+        etConfirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        container.addView(etConfirm);
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Change Password")
+                .setView(container)
+                .setPositiveButton("Change", (dialog, which) -> {
+                    String current = etCurrent.getText().toString();
+                    String neu = etNew.getText().toString();
+                    String conf = etConfirm.getText().toString();
+
+                    if (current.isEmpty() || neu.isEmpty() || conf.isEmpty()) {
+                        Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (!neu.equals(conf)) {
+                        Toast.makeText(getContext(), "New password and confirm do not match", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (neu.length() < 6) {
+                        Toast.makeText(getContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    // Reauthenticate then update password
+                    AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), current);
+                    user.reauthenticate(credential)
+                            .addOnSuccessListener(aVoid -> {
+                                user.updatePassword(neu)
+                                        .addOnSuccessListener(aVoid2 -> Toast.makeText(getContext(), "Password changed", Toast.LENGTH_SHORT).show())
+                                        .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to change password: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                            })
+                            .addOnFailureListener(e -> Toast.makeText(getContext(), "Current password incorrect", Toast.LENGTH_SHORT).show());
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     private void openGallery() {

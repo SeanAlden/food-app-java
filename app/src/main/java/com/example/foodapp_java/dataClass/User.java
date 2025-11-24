@@ -85,16 +85,18 @@ public class User implements Parcelable {
     private String phone;
     private String usertype;
     private String profileUrl;
+    private String address;
 
     public User() {}
 
-    public User(String uid, String email, String name, String phone, String usertype, String profileUrl) {
+    public User(String uid, String email, String name, String phone, String usertype, String profileUrl, String address) {
         this.uid = uid;
         this.email = email;
         this.name = name;
         this.phone = phone;
         this.usertype = usertype;
         this.profileUrl = profileUrl;
+        this.address = address;
     }
 
     protected User(Parcel parcel) {
@@ -104,6 +106,7 @@ public class User implements Parcelable {
         phone = parcel.readString();
         usertype = parcel.readString();
         profileUrl = parcel.readString();
+        address = parcel.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -124,6 +127,7 @@ public class User implements Parcelable {
     public String getPhone() { return phone; }
     public String getUsertype() { return usertype; }
     public String getProfileUrl() { return profileUrl; }
+    public String getAddress() { return address; }
 
     @Override
     public int describeContents() { return 0; }
@@ -136,5 +140,6 @@ public class User implements Parcelable {
         parcel.writeString(phone);
         parcel.writeString(usertype);
         parcel.writeString(profileUrl);
+        parcel.writeString(address);
     }
 }

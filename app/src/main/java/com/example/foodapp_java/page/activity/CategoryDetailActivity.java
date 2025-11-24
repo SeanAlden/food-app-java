@@ -40,7 +40,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category_detail);
 
         // Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbarFoodDetail);
+        Toolbar toolbar = findViewById(R.id.toolbarCategoryDetail);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(" ");

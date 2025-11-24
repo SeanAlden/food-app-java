@@ -46,7 +46,7 @@ public class UserFoodDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_food_detail);
 
         // Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbarFoodDetail);
+        Toolbar toolbar = findViewById(R.id.toolbarCategoryDetail);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(" ");

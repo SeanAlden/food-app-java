@@ -34,7 +34,7 @@
     <!--    </LinearLayout>-->
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarFoodDetail"
+        android:id="@+id/toolbarCategoryDetail"
         app:navigationIconTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
