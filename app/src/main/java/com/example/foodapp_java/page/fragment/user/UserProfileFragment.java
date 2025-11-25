@@ -467,6 +467,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -500,8 +501,8 @@ public class UserProfileFragment extends Fragment {
 
     private TextView tvHello, tvEmail, tvPhone, tvUserAddress;
     private ImageView ivProfileUser;
-    private Button btnLogout, btnChangePhoto, btnEditProfile;
-    private Button btnChangePassword, btnChangeAddress; // new
+    private Button btnLogout, btnChangePhoto;
+    private LinearLayout btnChangePassword, btnChangeAddress, btnEditProfile;
 
     private ActivityResultLauncher<Intent> pickImageLauncher;
 
@@ -517,13 +518,13 @@ public class UserProfileFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
 
-        tvHello = view.findViewById(R.id.tvHello);
-        tvEmail = view.findViewById(R.id.tvEmail);
-        tvPhone = view.findViewById(R.id.tvPhone);
+        tvHello = view.findViewById(R.id.tvUserHello);
+        tvEmail = view.findViewById(R.id.tvUserEmail);
+        tvPhone = view.findViewById(R.id.tvUserPhone);
         tvUserAddress = view.findViewById(R.id.tvUserAddress);
-        ivProfileUser = view.findViewById(R.id.ivProfileUser);
+        ivProfileUser = view.findViewById(R.id.ivUserProfile);
         btnLogout = view.findViewById(R.id.btnLogout);
-        btnChangePhoto = view.findViewById(R.id.btnChangePhoto);
+        btnChangePhoto = view.findViewById(R.id.btnChangeUserPhoto);
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
 
         // new buttons

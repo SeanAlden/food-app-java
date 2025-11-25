@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.foodapp_java.R;
 import com.google.firebase.firestore.DocumentReference;
@@ -41,6 +42,14 @@ public class AddSupplierActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_supplier);
+
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarAddSupplier);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(" ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         etName = findViewById(R.id.etSupplierName);
         etCode = findViewById(R.id.etSupplierCode);
@@ -138,5 +147,10 @@ public class AddSupplierActivity extends AppCompatActivity {
             if (is != null) is.close();
         }
         return out.getAbsolutePath();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

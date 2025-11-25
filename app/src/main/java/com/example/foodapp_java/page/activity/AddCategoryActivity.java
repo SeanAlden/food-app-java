@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 //import com.example.firebaseauth.R;
 import com.example.foodapp_java.R;
@@ -23,6 +24,14 @@ public class AddCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
+
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarAddCategory);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(" ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         etName = findViewById(R.id.etName);
         etDescription = findViewById(R.id.etDescription);
@@ -60,5 +69,10 @@ public class AddCategoryActivity extends AppCompatActivity {
                             Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                     );
         });
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

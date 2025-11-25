@@ -421,6 +421,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Food;
@@ -456,6 +457,14 @@ public class EditFoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_food);
+
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarEditFood);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(" ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         etName = findViewById(R.id.etEditFoodName);
         etPrice = findViewById(R.id.etEditFoodPrice);
@@ -608,6 +617,11 @@ public class EditFoodActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
 

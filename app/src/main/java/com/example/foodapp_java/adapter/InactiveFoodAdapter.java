@@ -19,13 +19,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class InactiveFoodAdapter extends RecyclerView.Adapter<InactiveFoodAdapter.VH> {
 
     private Context ctx;
     private List<Food> list;
+
+    private Map<String, String> categoryMap = new HashMap<>();
 
     public InactiveFoodAdapter(Context ctx, List<Food> list) {
         this.ctx = ctx;
@@ -47,6 +51,11 @@ public class InactiveFoodAdapter extends RecyclerView.Adapter<InactiveFoodAdapte
         holder.tvPrice.setText(String.format(Locale.getDefault(), "Rp %.0f", f.getPrice()));
         holder.tvDesc.setText(f.getDescription());
 
+        String categoryName = "-";
+        if (f.getCategoryId() != null && categoryMap.containsKey(f.getCategoryId())) {
+            categoryName = categoryMap.get(f.getCategoryId());
+        }
+
         if (f.getNearestExpDate() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             holder.tvExp.setText("Nearest exp: " + sdf.format(f.getNearestExpDate()) + " (stock: " + f.getTotalStock() + ")");
@@ -60,6 +69,8 @@ public class InactiveFoodAdapter extends RecyclerView.Adapter<InactiveFoodAdapte
                 holder.imgFood.setImageBitmap(BitmapFactory.decodeFile(img.getAbsolutePath()));
             } else holder.imgFood.setImageResource(R.drawable.food);
         }
+
+        holder.tvCategory.setText("Category: " + categoryName);
 
         holder.btnActivate.setOnClickListener(v -> showConfirmDialog(f, position));
     }
@@ -87,6 +98,10 @@ public class InactiveFoodAdapter extends RecyclerView.Adapter<InactiveFoodAdapte
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void addCategory(String id, String name) {
+        categoryMap.put(id, name);
     }
 
     static class VH extends RecyclerView.ViewHolder {

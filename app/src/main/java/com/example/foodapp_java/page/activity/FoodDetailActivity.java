@@ -29,7 +29,6 @@ public class FoodDetailActivity extends AppCompatActivity {
     private ImageView iv;
     private TextView tvName, tvPrice, tvDesc, tvStock;
     private LinearLayout containerExp;
-    private Button btnEdit, btnDelete;
     private FirebaseFirestore db;
     private static final String TAG = "FoodDetailActivity";
 
@@ -53,8 +52,6 @@ public class FoodDetailActivity extends AppCompatActivity {
         tvDesc = findViewById(R.id.tvFoodDetailDescription);
         tvStock = findViewById(R.id.tvFoodDetailStock);
         containerExp = findViewById(R.id.containerExp);
-        btnEdit = findViewById(R.id.btnEditFood);
-        btnDelete = findViewById(R.id.btnDeleteFood);
         db = FirebaseFirestore.getInstance();
 
         if (food != null) {
@@ -84,20 +81,6 @@ public class FoodDetailActivity extends AppCompatActivity {
             loadExpList();
         }
 
-        btnEdit.setOnClickListener(v -> {
-            startActivity(new android.content.Intent(this, EditFoodActivity.class).putExtra("food", food));
-        });
-
-        btnDelete.setOnClickListener(v -> {
-            // set status to inactive
-            db.collection("foods").document(food.getId()).update("status", "inactive")
-                    .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(this, "Food set to inactive", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }).addOnFailureListener(e -> {
-                        Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    });
-        });
     }
 
     private void loadExpList() {

@@ -17,7 +17,7 @@
             android:id="@+id/toolbarCategoryDetail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/purple_dark"
+            android:background="@color/blue_green"
             app:navigationIconTint="@color/white">
 
             <TextView

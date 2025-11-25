@@ -1,68 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/ivEditFoodImage"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarEditFood"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/food" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIconTint="@color/white">
 
-        <Button
-            android:id="@+id/btnChooseImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Choose Image"
-            android:layout_marginTop="8dp" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Edit Food"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <!-- NEW: Category dropdown -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category"
-            android:layout_marginTop="12dp" />
+        </com.google.android.material.appbar.MaterialToolbar>
 
-        <Spinner
-            android:id="@+id/spinnerCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <EditText
-            android:id="@+id/etEditFoodName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Food Name"
-            android:layout_marginTop="16dp" />
 
-        <EditText
-            android:id="@+id/etEditFoodPrice"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Price"
-            android:inputType="number"
-            android:layout_marginTop="8dp" />
+            android:orientation="vertical"
+            android:padding="12dp">
 
-        <EditText
-            android:id="@+id/etEditFoodDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Description"
-            android:layout_marginTop="8dp" />
+            <ImageView
+                android:id="@+id/ivEditFoodImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/food" />
 
-        <Button
-            android:id="@+id/btnSaveFood"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:layout_marginTop="16dp" />
+            <Button
+                android:id="@+id/btnChooseImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Choose Image" />
 
-    </LinearLayout>
-</ScrollView>
+            <!-- NEW: Category dropdown -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Category" />
+
+            <Spinner
+                android:id="@+id/spinnerCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/etEditFoodName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Food Name" />
+
+            <EditText
+                android:id="@+id/etEditFoodPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Price"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/etEditFoodDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Description" />
+
+            <Button
+                android:id="@+id/btnSaveFood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Save" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

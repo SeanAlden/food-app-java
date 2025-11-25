@@ -1,6 +1,7 @@
 package com.example.foodapp_java.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Favorite;
 import com.example.foodapp_java.dataClass.Food;
+import com.example.foodapp_java.page.activity.UserFoodDetailActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -29,6 +31,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.VH> {
 
     public interface OnRemoveListener {
         void onRemove(int position);
+    }
+
+    public interface OnFavoriteClick {
+        void onClick(Food food);
     }
 
     private Context ctx;
@@ -64,6 +70,12 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.VH> {
         } else {
             holder.iv.setImageResource(R.drawable.food);
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(ctx, UserFoodDetailActivity.class);
+            intent.putExtra("food", f); // kirim objek Food
+            ctx.startActivity(intent);
+        });
 
         holder.btnRemove.setOnClickListener(v -> {
             // remove favorite doc

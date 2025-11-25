@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="24dp"
         android:gravity="center_horizontal"
-        android:background="@color/purple_primary">
+        android:background="@color/blue_green">
 
         <!-- App Logo -->
         <ImageView
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Name"
                 app:startIconDrawable="@drawable/ic_person"
-                app:startIconTint="@color/purple_primary">
+                app:startIconTint="@color/blue_green">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/name"
@@ -69,7 +69,7 @@
                 android:layout_marginTop="12dp"
                 android:hint="Email"
                 app:startIconDrawable="@drawable/ic_email"
-                app:startIconTint="@color/purple_primary">
+                app:startIconTint="@color/blue_green">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
@@ -85,7 +85,7 @@
                 android:layout_marginTop="12dp"
                 android:hint="Phone"
                 app:startIconDrawable="@drawable/ic_phone"
-                app:startIconTint="@color/purple_primary">
+                app:startIconTint="@color/blue_green">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phone"
@@ -101,7 +101,7 @@
                 android:layout_marginTop="12dp"
                 android:hint="Address"
                 app:startIconDrawable="@drawable/ic_location"
-                app:startIconTint="@color/purple_primary">
+                app:startIconTint="@color/blue_green">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/address"
@@ -117,7 +117,7 @@
                 android:layout_marginTop="12dp"
                 android:hint="Password"
                 app:startIconDrawable="@drawable/ic_lock"
-                app:startIconTint="@color/purple_primary"
+                app:startIconTint="@color/blue_green"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -143,7 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/purple_primary"
+                android:backgroundTint="@color/blue_green"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
         </LinearLayout>

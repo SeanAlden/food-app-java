@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Supplier;
@@ -39,6 +40,14 @@ public class EditSupplierActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_supplier);
 
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarAddSupplier);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(" ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         etName = findViewById(R.id.etSupplierNameEdit);
         etCode = findViewById(R.id.etSupplierCodeEdit);
         etPhone = findViewById(R.id.etSupplierPhoneEdit);
@@ -61,7 +70,8 @@ public class EditSupplierActivity extends AppCompatActivity {
             String path = supplier.getImage();
             if (path != null && !path.isEmpty()) {
                 File f = new File(path);
-                if (f.exists()) ivPreview.setImageBitmap(BitmapFactory.decodeFile(f.getAbsolutePath()));
+                if (f.exists())
+                    ivPreview.setImageBitmap(BitmapFactory.decodeFile(f.getAbsolutePath()));
                 else ivPreview.setImageResource(R.drawable.supplier);
             } else ivPreview.setImageResource(R.drawable.supplier);
         }
@@ -73,7 +83,9 @@ public class EditSupplierActivity extends AppCompatActivity {
                     InputStream is = getContentResolver().openInputStream(uri);
                     ivPreview.setImageBitmap(BitmapFactory.decodeStream(is));
                     if (is != null) is.close();
-                } catch (Exception ex) { Log.w("EditSupplier", "preview failed", ex); }
+                } catch (Exception ex) {
+                    Log.w("EditSupplier", "preview failed", ex);
+                }
             }
         });
 
@@ -87,7 +99,10 @@ public class EditSupplierActivity extends AppCompatActivity {
             String address = etAddress.getText().toString().trim();
             String desc = etDesc.getText().toString().trim();
 
-            if (name.isEmpty()) { etName.setError("Required"); return; }
+            if (name.isEmpty()) {
+                etName.setError("Required");
+                return;
+            }
 
             ProgressDialog progress = new ProgressDialog(this);
             progress.setMessage("Updating...");
@@ -147,5 +162,11 @@ public class EditSupplierActivity extends AppCompatActivity {
             if (is != null) is.close();
         }
         return out.getAbsolutePath();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

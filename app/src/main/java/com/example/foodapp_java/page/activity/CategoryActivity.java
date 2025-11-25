@@ -157,7 +157,7 @@ public class CategoryActivity extends AppCompatActivity {
                                 break;
                         }
                     }
-                    adapter.notifyDataSetChanged();
+//                    adapter.notifyDataSetChanged();
                 }
             }
         });

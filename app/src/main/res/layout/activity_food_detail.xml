@@ -12,7 +12,7 @@
         android:id="@+id/toolbarFoodDetail"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_dark"
+        android:background="@color/blue_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -120,21 +120,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/containerExp">
 
-            <Button
-                android:id="@+id/btnEditFood"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Edit" />
-
-            <Button
-                android:id="@+id/btnDeleteFood"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:text="Delete"
-                android:textColor="@android:color/white" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

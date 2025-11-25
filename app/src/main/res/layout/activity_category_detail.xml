@@ -38,7 +38,7 @@
         app:navigationIconTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_dark">
+        android:background="@color/blue_green">
 
         <TextView
             android:id="@+id/tvTitle"

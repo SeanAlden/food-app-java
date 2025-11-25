@@ -18,7 +18,7 @@
             android:id="@+id/toolbarCategoryDetail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/purple_dark"
+            android:background="@color/blue_green"
             app:navigationIconTint="@color/white"
             >
 
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/purple_dark"
+                android:backgroundTint="@color/blue_green"
                 android:text="Add to Cart"
                 android:textColor="@android:color/white" />
         </LinearLayout>

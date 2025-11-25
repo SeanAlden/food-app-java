@@ -249,6 +249,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.foodapp_java.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -286,6 +287,14 @@ public class AddOutgoingStockActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_outgoing_stock);
+
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarAddOutgoingStock);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(" ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         spinnerFood = findViewById(R.id.spinnerFood);
         spinnerSupplier = findViewById(R.id.spinnerSupplier);
@@ -515,5 +524,10 @@ public class AddOutgoingStockActivity extends AppCompatActivity {
                     finish();
                 })
                 .addOnFailureListener(e -> Toast.makeText(this, "Gagal: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_primary"
+    android:background="@color/blue_green"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="FoodApp"
+            android:text="Food App"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />

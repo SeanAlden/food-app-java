@@ -219,6 +219,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -251,7 +252,8 @@ public class AdminProfileFragment extends Fragment {
     private FirebaseUser user;
 
     private ImageView ivAdminProfile;
-    private Button btnChangeAdminPhoto, btnLogout, btnEditProfile, btnChangePassword, btnChangeAddress;
+    private Button btnChangeAdminPhoto, btnLogout;
+    private LinearLayout btnEditProfile, btnChangePassword, btnChangeAddress;
     private TextView tvAdminHello, tvAdminEmail, tvAdminPhone, tvAdminAddress;
 
     private ActivityResultLauncher<Intent> pickImageLauncher;

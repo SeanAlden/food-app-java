@@ -76,7 +76,8 @@
             android:exported="false" />
         <activity
             android:name=".page.activity.AddFoodActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".page.activity.EditCategoryActivity"
             android:exported="false" />
@@ -108,12 +109,10 @@
         <!-- android:exported="false" /> -->
         <activity
             android:name=".page.activity.RegisterActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".page.activity.LoginActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Material3.Light.NoActionBar" /> <!-- <activity -->
+            android:exported="true" /> <!-- <activity -->
         <!-- android:name=".page.LoginActivity" -->
         <!-- android:exported="true" -->
         <!-- android:theme="@style/Theme.Material3.Light.NoActionBar"> -->

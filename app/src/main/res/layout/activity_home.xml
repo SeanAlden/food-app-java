@@ -23,6 +23,7 @@
         android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:text="Logout"
+        android:backgroundTint="@color/blue_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

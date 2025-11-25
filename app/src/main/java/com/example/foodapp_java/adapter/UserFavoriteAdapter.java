@@ -401,8 +401,13 @@ public class UserFavoriteAdapter extends RecyclerView.Adapter<UserFavoriteAdapte
     private final Map<String, String> categoryNameCache = new HashMap<>();
     private final Map<String, Integer> foodFavCountCache = new HashMap<>();
 
+
     public interface OnFavoriteChanged {
         void onRemoved(String favDocId);
+    }
+
+    public interface OnFavoriteClick {
+        void onClick(Food food);
     }
 
     private final OnFavoriteChanged callback;

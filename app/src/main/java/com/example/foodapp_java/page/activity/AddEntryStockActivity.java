@@ -237,6 +237,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.foodapp_java.R;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -269,6 +270,14 @@ public class AddEntryStockActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry_stock);
+
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarAddEntryStock);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(" ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         spinnerFood = findViewById(R.id.spinnerFood);
         spinnerSupplier = findViewById(R.id.spinnerSupplier);
@@ -484,5 +493,11 @@ public class AddEntryStockActivity extends AppCompatActivity {
                 finish();
             }).addOnFailureListener(e -> Toast.makeText(this, "Gagal menambahkan stok", Toast.LENGTH_SHORT).show());
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

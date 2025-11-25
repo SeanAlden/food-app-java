@@ -40,44 +40,44 @@ public class FoodActivity extends AppCompatActivity {
 
     private Map<String, String> categoryMap = new HashMap<>();
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        listenFoods();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (foodListener != null) {
-            foodListener.remove();
-            foodListener = null;
-        }
-    }
-
-    private void listenFoods() {
-        foodListener = db.collection("foods")
-                .whereEqualTo("status", "active")
-                .addSnapshotListener((querySnapshot, e) -> {
-                    if (e != null) {
-                        Log.e(TAG, "listen error", e);
-                        Toast.makeText(this, "Listen failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (querySnapshot == null) return;
-
-                    foods.clear();
-                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
-                        Food f = doc.toObject(Food.class);
-                        if (f != null) {
-                            f.setId(doc.getId());
-                            foods.add(f);
-                            loadExpStocksForFood(f, foods.size() - 1);
-                        }
-                    }
-                    adapter.notifyDataSetChanged();
-                });
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        listenFoods();
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if (foodListener != null) {
+//            foodListener.remove();
+//            foodListener = null;
+//        }
+//    }
+//
+//    private void listenFoods() {
+//        foodListener = db.collection("foods")
+//                .whereEqualTo("status", "active")
+//                .addSnapshotListener((querySnapshot, e) -> {
+//                    if (e != null) {
+//                        Log.e(TAG, "listen error", e);
+//                        Toast.makeText(this, "Listen failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    if (querySnapshot == null) return;
+//
+//                    foods.clear();
+//                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+//                        Food f = doc.toObject(Food.class);
+//                        if (f != null) {
+//                            f.setId(doc.getId());
+//                            foods.add(f);
+//                            loadExpStocksForFood(f, foods.size() - 1);
+//                        }
+//                    }
+//                    adapter.notifyDataSetChanged();
+//                });
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,14 +173,15 @@ public class FoodActivity extends AppCompatActivity {
 //    }
 
     private void loadFoods() {
-        db.collection("foods").whereEqualTo("status", "active")
+        db.collection("foods")
+                .whereEqualTo("status", "active")
                 .get()
                 .addOnSuccessListener(querySnapshot -> {
                     foods.clear(); // Hapus data lama
-                    if (querySnapshot.isEmpty()) {
-                        adapter.notifyDataSetChanged(); // Jika tidak ada makanan, update UI
-                        return;
-                    }
+//                    if (querySnapshot.isEmpty()) {
+//                        adapter.notifyDataSetChanged(); // Jika tidak ada makanan, update UI
+//                        return;
+//                    }
 
                     for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
                         Food f = doc.toObject(Food.class);
@@ -268,6 +269,7 @@ public class FoodActivity extends AppCompatActivity {
                     runOnUiThread(() -> adapter.notifyItemChanged(position));
                 });
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

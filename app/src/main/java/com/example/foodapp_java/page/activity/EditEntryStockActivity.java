@@ -257,6 +257,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.EntryStock;
@@ -288,6 +289,14 @@ public class EditEntryStockActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_entry_stock);
+
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbarEditEntryStock);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(" ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         spinnerFood = findViewById(R.id.spinnerFoodEdit);
         spinnerSupplier = findViewById(R.id.spinnerSupplierEdit);
@@ -517,5 +526,10 @@ public class EditEntryStockActivity extends AppCompatActivity {
                                         });
                             });
                 });
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

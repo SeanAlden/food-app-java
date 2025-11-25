@@ -15,7 +15,7 @@
         android:id="@+id/bottomNavigationUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color"
+        app:itemIconTint="@color/blue_green"
+        app:itemTextColor="@color/blue_green"
         app:menu="@menu/menu_user_bottom"/>
 </LinearLayout>

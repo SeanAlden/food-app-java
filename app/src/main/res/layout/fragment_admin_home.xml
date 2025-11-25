@@ -18,7 +18,7 @@
             android:id="@+id/toolbarAdminHome"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/purple_dark">
+            android:background="@color/blue_green">
 
             <TextView
                 android:layout_width="wrap_content"
