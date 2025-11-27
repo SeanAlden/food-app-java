@@ -128,6 +128,7 @@
 package com.example.foodapp_java;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -156,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // gunakan layout splash sederhana berisi progressbar (lihat contoh dibawah)
         setContentView(R.layout.activity_main);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 //        progressBar = findViewById(R.id.progressBar);
 

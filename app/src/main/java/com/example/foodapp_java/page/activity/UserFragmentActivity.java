@@ -13,6 +13,9 @@ import com.example.foodapp_java.page.fragment.user.UserTransactionFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserFragmentActivity extends AppCompatActivity {
+
+    private Fragment activeFragment = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +34,38 @@ public class UserFragmentActivity extends AppCompatActivity {
             } else if (id == R.id.nav_user_profile) {
                 selectedFragment = new UserProfileFragment();
             }
-            if (selectedFragment != null) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container_user, selectedFragment)
-                        .commit();
+//            if (selectedFragment != null) {
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container_user, selectedFragment)
+//                        .commit();
+//            }
+//            return true;
+//        });
+//
+//        bottomNav.setSelectedItemId(R.id.nav_user_home);
+
+            // ⛔ Jangan replace jika fragment yang sama diklik lagi
+            if (activeFragment != null &&
+                    selectedFragment.getClass().equals(activeFragment.getClass())) {
+                return true; // IGNORE
             }
+
+            // Ganti fragment hanya jika berbeda
+            activeFragment = selectedFragment;
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container_user, selectedFragment)
+                    .commit();
+
             return true;
         });
 
-        bottomNav.setSelectedItemId(R.id.nav_user_home);
+        // default
+        activeFragment = new UserHomeFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container_user, activeFragment)
+                .commit();
     }
 }
