@@ -21,7 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class CategoryDetailActivity extends AppCompatActivity {
+public class UserCategoryDetailActivity extends AppCompatActivity {
 
     private TextView tvTitle;
     private ImageButton btnBack;
@@ -69,7 +69,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
 //        rvFoods.setLayoutManager(new LinearLayoutManager(this));
         rvFoods.setLayoutManager(new GridLayoutManager(this, 2));
         adapter.setOnItemClickListener(food -> {
-            Intent intent = new Intent(this, FoodDetailActivity.class);
+            Intent intent = new Intent(this, UserFoodDetailActivity.class);
             intent.putExtra("food", food);
             startActivity(intent);
         });

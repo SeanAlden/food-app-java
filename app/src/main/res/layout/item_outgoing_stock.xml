@@ -1,83 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:padding="14dp"
         android:orientation="horizontal"
-        android:padding="12dp">
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imgFoodSmallOutgoing"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/food" />
+            android:background="@drawable/rounded_image_bg"
+            android:src="@drawable/food"/>
 
         <LinearLayout
+            android:layout_marginStart="14dp"
+            android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvFoodNameOutgoing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Food name"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#111111"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/tvCategoryOutgoing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Category"
-                android:textSize="12sp" />
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/tvQtyOutgoing"
+                android:text="Qty +5 → before: 10 after: 15"
+                android:textColor="#333333"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Qty -5 → before: 15 after: 10"
-                android:textSize="12sp" />
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/tvDestinationOutgoing"-->
-            <!--                android:text="By: admin"-->
-            <!--                android:textSize="12sp"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"/>-->
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/tvSupplierOutgoing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Supplier: X — By: admin"
-                android:textSize="12sp" />
+                android:textColor="#777777"
+                android:textSize="12sp"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
+        <!-- Buttons -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEditOutgoing"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:text="Edit"
+                android:textAllCaps="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit" />
+                app:icon="@drawable/ic_edit"
+                app:iconPadding="8dp"
+                app:iconSize="20dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDeleteOutgoing"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:text="Delete"
+                android:textAllCaps="false"
+                android:layout_marginTop="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Delete" />
+                app:icon="@drawable/ic_delete"
+                app:iconPadding="8dp"
+                app:iconSize="20dp"/>
         </LinearLayout>
+
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

@@ -101,7 +101,7 @@ public class EntryStockAdapter extends RecyclerView.Adapter<EntryStockAdapter.VH
 
         public VH(@NonNull View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.imgFoodSmall);
+            img = itemView.findViewById(R.id.imgFoodSmallEntry);
             tvFood = itemView.findViewById(R.id.tvFoodNameEntry);
             tvCategory = itemView.findViewById(R.id.tvCategoryEntry);
             tvQty = itemView.findViewById(R.id.tvQtyEntry);

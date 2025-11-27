@@ -1,36 +1,44 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:elevation="4dp"
-    android:padding="8dp">
+    android:layout_margin="10dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="5dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/light_gray">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="14dp"
         android:orientation="vertical">
 
-        <!-- Bagian atas: gambar + detail -->
+        <!-- TOP: IMAGE + INFO -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/ivTransImage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/food" />
+                android:src="@drawable/food"
+                android:background="@drawable/rounded_image_bg"
+                android:clipToOutline="true" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_weight="1"
+                android:layout_marginStart="12dp"
                 android:orientation="vertical">
 
+                <!-- NAME + ID -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -42,77 +50,76 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Food name"
-                        android:textSize="16sp"
+                        android:textSize="17sp"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Food ID"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
+                        android:text="ID-0001"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue_green" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvTransExp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Exp nearest: -"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_gray"
+                    android:layout_marginTop="4dp" />
 
                 <TextView
                     android:id="@+id/tvDetailClick"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Click to see +x items"
+                    android:text="Click to see +3 items"
                     android:textColor="@color/blue"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="6dp" />
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Bagian bawah: total & timestamp full width -->
+        <!-- BOTTOM SECTION (ADMIN SPECIFIC) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
 
-            <!-- Baris 1: total -->
             <TextView
                 android:id="@+id/tvTransTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
                 android:text="Total: Rp 0"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/blue_green"
+                android:textStyle="bold"
+                android:textSize="15sp" />
 
-            <!-- Baris 2: email user -->
             <TextView
                 android:id="@+id/tvUserEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="user@example.com"
-                android:textSize="13sp"
-                android:textColor="@android:color/darker_gray"
-                android:paddingTop="2dp" />
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" />
 
-            <!-- Baris 3: timestamp -->
             <TextView
                 android:id="@+id/tvTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:text="Timestamp"
-                android:textSize="13sp"
-                android:textColor="@android:color/darker_gray"
-                android:paddingTop="2dp" />
-
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"
+                android:layout_marginTop="2dp" />
         </LinearLayout>
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

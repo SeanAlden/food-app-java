@@ -55,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:text="User: -"
                 android:textSize="13sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textStyle="bold"
+                android:textColor="@color/purple_dark" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -53,11 +53,11 @@ public class OutgoingStockActivity extends AppCompatActivity {
         adapter = new OutgoingStockAdapter(this, entries, new OutgoingStockAdapter.OnActionListener() {
             @Override
             public void onEdit(OutgoingStock entry) {
-                // Intent i = new Intent(OutgoingStockActivity.this, EditOutgoingStockActivity.class);
-                // i.putExtra("entry", entry);
-                // i.putExtra("entryId", entry.getId());
-                // startActivity(i);
-                Toast.makeText(OutgoingStockActivity.this, "Fitur Edit belum diimplementasikan", Toast.LENGTH_SHORT).show();
+                 Intent i = new Intent(OutgoingStockActivity.this, EditOutgoingStockActivity.class);
+                 i.putExtra("entry", entry);
+                 i.putExtra("entryId", entry.getId());
+                 startActivity(i);
+//                Toast.makeText(OutgoingStockActivity.this, "Fitur Edit belum diimplementasikan", Toast.LENGTH_SHORT).show();
             }
 
             @Override

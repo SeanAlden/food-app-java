@@ -96,7 +96,13 @@ public class TransactionDetailActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbarDetailTransaction);
-        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            // show back button
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("");
+        }
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         int trxId = getIntent().getIntExtra("transactionId", -1);
         if (trxId == -1) {
@@ -146,5 +152,10 @@ public class TransactionDetailActivity extends AppCompatActivity {
         rvDetail.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TransactionAdapter(this, trx.getItems());
         rvDetail.setAdapter(adapter);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

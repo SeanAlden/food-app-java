@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.dataClass.Category;
 import com.example.foodapp_java.page.activity.CategoryDetailActivity;
+import com.example.foodapp_java.page.activity.UserCategoryDetailActivity;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class UserCategoryAdapter extends RecyclerView.Adapter<UserCategoryAdapte
 
         // === CLICK LISTENER UNTUK PINDAH HALAMAN ===
         holder.itemView.setOnClickListener(v -> {
-            Intent i = new Intent(context, CategoryDetailActivity.class);
+            Intent i = new Intent(context, UserCategoryDetailActivity.class);
             i.putExtra("categoryId", c.getId());
             i.putExtra("categoryName", c.getName());
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,120 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="6dp"
+    android:layout_margin="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="14dp"
     app:cardElevation="4dp">
 
     <LinearLayout
-        android:padding="8dp"
+        android:padding="12dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Image -->
         <ImageView
             android:id="@+id/ivCartImage"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/food" />
+            android:src="@drawable/food"
+            android:background="@drawable/bg_rounded_gray"
+            android:clipToOutline="true" />
 
         <LinearLayout
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="10dp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvCartFoodName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:text="Food name"
+                android:textStyle="bold"
+                android:textColor="#222222"
+                android:textSize="16sp"/>
 
-                <TextView
-                    android:id="@+id/tvCartFoodName"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Food name"
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/tvCartPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rp 0"
-                    android:textSize="14sp"/>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tvCartPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp 0"
+                android:textColor="#1B5E20"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp"/>
 
             <TextView
                 android:id="@+id/tvCartSubtotal"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Subtotal: Rp 0"
-                android:textSize="14sp" />
+                android:textColor="#444444"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp" />
 
             <TextView
                 android:id="@+id/tvCartExp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Exp nearest: -"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textColor="#777777"
+                android:layout_marginTop="4dp" />
 
             <TextView
                 android:id="@+id/tvCartStock"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total stock: 0"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textColor="#777777" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
-                <ImageButton
+            <!-- Delete -->
+            <ImageButton
                 android:id="@+id/btnDeleteCart"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:src="@drawable/ic_delete"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                app:tint="#D32F2F" />
 
+            <!-- Quantity Control -->
             <LinearLayout
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content">
 
                 <ImageButton
                     android:id="@+id/btnCartMinus"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/ic_remove"
-                    android:background="@android:color/transparent" />
+                    app:tint="#333333" />
 
                 <TextView
                     android:id="@+id/tvCartQty"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:text="1"
+                    android:gravity="center"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <ImageButton
                     android:id="@+id/btnCartPlus"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/ic_add"
-                    android:background="@android:color/transparent" />
+                    android:background="@android:color/transparent"
+                    app:tint="#333333" />
             </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

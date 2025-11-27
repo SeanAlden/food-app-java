@@ -40,44 +40,44 @@ public class FoodActivity extends AppCompatActivity {
 
     private Map<String, String> categoryMap = new HashMap<>();
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        listenFoods();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        if (foodListener != null) {
-//            foodListener.remove();
-//            foodListener = null;
-//        }
-//    }
-//
-//    private void listenFoods() {
-//        foodListener = db.collection("foods")
-//                .whereEqualTo("status", "active")
-//                .addSnapshotListener((querySnapshot, e) -> {
-//                    if (e != null) {
-//                        Log.e(TAG, "listen error", e);
-//                        Toast.makeText(this, "Listen failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-//                    if (querySnapshot == null) return;
-//
-//                    foods.clear();
-//                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
-//                        Food f = doc.toObject(Food.class);
-//                        if (f != null) {
-//                            f.setId(doc.getId());
-//                            foods.add(f);
-//                            loadExpStocksForFood(f, foods.size() - 1);
-//                        }
-//                    }
-//                    adapter.notifyDataSetChanged();
-//                });
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        listenFoods();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (foodListener != null) {
+            foodListener.remove();
+            foodListener = null;
+        }
+    }
+
+    private void listenFoods() {
+        foodListener = db.collection("foods")
+                .whereEqualTo("status", "active")
+                .addSnapshotListener((querySnapshot, e) -> {
+                    if (e != null) {
+                        Log.e(TAG, "listen error", e);
+                        Toast.makeText(this, "Listen failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (querySnapshot == null) return;
+
+                    foods.clear();
+                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                        Food f = doc.toObject(Food.class);
+                        if (f != null) {
+                            f.setId(doc.getId());
+                            foods.add(f);
+                            loadExpStocksForFood(f, foods.size() - 1);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,7 +196,7 @@ public class FoodActivity extends AppCompatActivity {
                         }
                     }
                     // Hapus notifyDataSetChanged() dari sini untuk mencegah flash
-                    // adapter.notifyDataSetChanged();
+//                     adapter.notifyDataSetChanged();
                 })
                 .addOnFailureListener(e -> {
                     Log.e(TAG, "failed load foods", e);

@@ -52,10 +52,10 @@ public class DetailSupplierActivity extends AppCompatActivity {
 
         if (supplier != null) {
             tvName.setText(supplier.getName());
-            tvCode.setText(supplier.getCode());
-            tvPhone.setText(supplier.getPhone());
-            tvAddress.setText(supplier.getAddress());
-            tvDesc.setText(supplier.getDescription());
+            tvCode.setText("Supplier Code : " + supplier.getCode());
+            tvPhone.setText("Supplier Phone : " + supplier.getPhone());
+            tvAddress.setText("Supplier Address : " + supplier.getAddress());
+            tvDesc.setText("Supplier Description : " + supplier.getDescription());
 
             String img = supplier.getImage();
             if (img != null && !img.isEmpty()) {

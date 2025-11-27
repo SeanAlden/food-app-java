@@ -71,8 +71,12 @@
 
 package com.example.foodapp_java.page.activity;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,14 +88,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodapp_java.R;
 import com.example.foodapp_java.adapter.CategoryAdapter;
 import com.example.foodapp_java.dataClass.Category;
+import com.example.foodapp_java.dataClass.Food;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CategoryActivity extends AppCompatActivity {
 
@@ -99,6 +108,44 @@ public class CategoryActivity extends AppCompatActivity {
     private CategoryAdapter adapter;
     private ArrayList<Category> categoryList;
     private FirebaseFirestore db;
+    private ListenerRegistration categoryListener;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        listenCategories();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (categoryListener != null) {
+            categoryListener.remove();
+            categoryListener = null;
+        }
+    }
+
+    private void listenCategories() {
+        categoryListener = db.collection("categories")
+                .addSnapshotListener((querySnapshot, e) -> {
+                    if (e != null) {
+                        Log.e(TAG, "listen error", e);
+                        Toast.makeText(this, "Listen failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (querySnapshot == null) return;
+
+                    categoryList.clear();
+                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                        Category c = doc.toObject(Category.class);
+                        if (c != null) {
+                            c.setId(doc.getId());
+                            categoryList.add(c);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

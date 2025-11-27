@@ -18,17 +18,23 @@ import com.example.foodapp_java.dataClass.FoodExpDateStock;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class FoodDetailActivity extends AppCompatActivity {
     private Food food;
+    private FoodExpDateStock totalStock;
     private ImageView iv;
     private TextView tvName, tvPrice, tvDesc, tvStock;
     private LinearLayout containerExp;
+    private int currentQty = 1;
+    private int maxStock = 0;
     private FirebaseFirestore db;
     private static final String TAG = "FoodDetailActivity";
 
@@ -58,7 +64,37 @@ public class FoodDetailActivity extends AppCompatActivity {
             tvName.setText(food.getName());
             tvPrice.setText(String.format(Locale.getDefault(), "Rp %.0f", food.getPrice()));
             tvDesc.setText(food.getDescription());
-            tvStock.setText("Total stock: " + food.getTotalStock());
+//            tvStock.setText("Total stock: " + food.getTotalStock());
+
+            db.collection("food_exp_date_stocks")
+                    .whereEqualTo("foodId", food.getId())
+                    .get()
+                    .addOnSuccessListener(query -> {
+                        int total = 0;
+                        Date nearest = null;
+                        List<FoodExpDateStock> stocks = new ArrayList<>();
+
+                        for (QueryDocumentSnapshot doc : query) {
+                            FoodExpDateStock s = doc.toObject(FoodExpDateStock.class);
+                            stocks.add(s);
+                            total += s.getStock_amount();
+                            Date exp = s.getExp_date();
+                            if (exp != null && (nearest == null || exp.before(nearest))) {
+                                nearest = exp;
+                            }
+                        }
+
+                        maxStock = total;
+//                        nearestExp = nearest;
+
+                        tvStock.setText("Stock: " + total);
+//                        if (nearest != null) {
+//                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+//                            tvExp.setText("Exp: " + sdf.format(nearest));
+//                        } else {
+//                            tvExp.setText("Exp: -");
+//                        }
+                    });
 
 //            if (food.getImagePath() != null && !food.getImagePath().isEmpty()) {
 //                File f = new File(food.getImagePath());
