@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,9 +83,33 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.VH> {
             ctx.startActivity(i);
         });
 
+//        holder.btnDelete.setOnClickListener(v -> {
+//            com.google.firebase.firestore.FirebaseFirestore.getInstance().collection("foods").document(f.getId()).update("status", "inactive");
+//        });
+
         holder.btnDelete.setOnClickListener(v -> {
-            com.google.firebase.firestore.FirebaseFirestore.getInstance().collection("foods").document(f.getId()).update("status", "inactive");
+            new androidx.appcompat.app.AlertDialog.Builder(ctx)
+                    .setTitle("Confirm Delete")
+                    .setMessage("Are you sure you want to delete this food?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        // Lakukan delete
+                        com.google.firebase.firestore.FirebaseFirestore
+                                .getInstance()
+                                .collection("foods")
+                                .document(f.getId())
+                                .update("status", "inactive")
+                                .addOnSuccessListener(a -> {
+                                    Toast.makeText(ctx, "Food deleted", Toast.LENGTH_SHORT).show();
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(ctx, "Failed to delete", Toast.LENGTH_SHORT).show();
+                                });
+                    })
+                    .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                    .show();
         });
+
 
         holder.itemView.setOnClickListener(v -> {
             Intent i = new Intent(ctx, FoodDetailActivity.class);
@@ -106,10 +131,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.VH> {
     private String getCategoryName(String categoryId) {
         if (categoryId == null) return "-";
         switch (categoryId) {
-            case "beverage": return "Beverage";
-            case "snack": return "Snack";
-            case "main_course": return "Main Course";
-            default: return categoryId; // fallback tampilkan ID kalau belum di-mapping
+            case "beverage":
+                return "Beverage";
+            case "snack":
+                return "Snack";
+            case "main_course":
+                return "Main Course";
+            default:
+                return categoryId; // fallback tampilkan ID kalau belum di-mapping
         }
     }
 
